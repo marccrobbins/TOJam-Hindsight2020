@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   SwitchSettingsMigration: 1
-  HasSourceProject: 1
+  HasSourceProject: 0
   HasPlatforms: 1
-  sourceProjectPath: TOJamFmodProject\TOJamFmodProject.fspro
+  sourceProjectPath: TOJamFmodProject/TOJamFmodProject.fspro
   sourceBankPath: TOJamFmodProject\Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
@@ -58,7 +58,9 @@ MonoBehaviour:
     Value: 0
   - Platform: 20
     Value: 0
-  BankDirectorySettings: []
+  BankDirectorySettings:
+  - Platform: 2
+    Value: Desktop
   VirtualChannelSettings:
   - Platform: 1
     Value: 1024
