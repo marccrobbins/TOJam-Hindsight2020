@@ -691,6 +691,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicEvent: event:/Music/Music
+  PuzzleSpawnLocation: {fileID: 0}
+  PuzzlePrefabLevels: []
+  ConveyersInLevel: []
+  SpawnersInLevel: []
 --- !u!4 &824774066
 Transform:
   m_ObjectHideFlags: 0
