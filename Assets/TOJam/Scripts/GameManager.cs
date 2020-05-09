@@ -44,6 +44,10 @@ public class GameManager : MonoBehaviour
 		if(hasWon)
 		{
 			Debug.Log("YOU WIN!");
+			foreach(PieceSpawner spawner in SpawnersInLevel)
+			{
+				spawner.StopSpawning();
+			}
 		}
 		else
 		{
@@ -52,6 +56,11 @@ public class GameManager : MonoBehaviour
 			{
 				Debug.Log("YOU LOSE");
 				tries = 3;
+
+				foreach (PieceSpawner spawner in SpawnersInLevel)
+				{
+					spawner.StopSpawning();
+				}
 			}
 			else
 			{
