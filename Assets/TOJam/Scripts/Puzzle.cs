@@ -32,6 +32,7 @@ public class Puzzle : MonoBehaviour
 				isDone = false;
 			}
 		}
+		if(isDone) Debug.Log("DONE? " + isDone);
 
 		if(isDone && !pleaseStopLogging)
 		{
