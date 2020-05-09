@@ -21,7 +21,7 @@ public class Conveyer : MonoBehaviour
 
 	public void SpeedUp()
 	{
-		speedMod = 10f;
+		speedMod = 20f;
 	}
 	public void SlowDown()
 	{
