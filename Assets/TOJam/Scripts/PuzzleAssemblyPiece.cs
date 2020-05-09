@@ -6,5 +6,10 @@ public class PuzzleAssemblyPiece : MonoBehaviour
 {
 	public string pieceName;
 	[Range(1, 100)] public float pieceCollisionSize;
+	 public Mesh refMesh; 
 
+	public void GrabMesh()
+	{
+		refMesh = GetComponent<MeshFilter>()?.mesh;
+	}
 }

@@ -8,13 +8,23 @@ public class Conveyer : MonoBehaviour
 	/// <summary>
 	/// Velocity in m/s
 	/// </summary>
-	[SerializeField] private float Velocity;
+	[SerializeField] private float Speed;
+	private float speedMod = 1.0f;
 
 	private void OnTriggerStay(Collider other)
 	{
 		if (other.gameObject.CompareTag("Conveyer"))
 		{
-			other.transform.position = Vector3.MoveTowards(other.transform.position, transform.position + (transform.forward * 1000), Velocity * Time.deltaTime);
+			other.transform.position = Vector3.MoveTowards(other.transform.position, transform.position + (transform.forward * 1000), Speed * speedMod * Time.deltaTime);
 		}
+	}
+
+	public void SpeedUp()
+	{
+		speedMod = 10f;
+	}
+	public void SlowDown()
+	{
+		speedMod = 1f;
 	}
 }

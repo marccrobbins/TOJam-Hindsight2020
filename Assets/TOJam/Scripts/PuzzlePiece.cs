@@ -19,9 +19,21 @@ public class PuzzlePiece : MonoBehaviour
 	private float rotationSpeed = 0.00001f;
 	private float magSpeed = 0.8f;
 
+	[SerializeField] private MeshFilter meshFilter;
+	[SerializeField] private MeshCollider meshCollider;
+
 	private void Start()
 	{
 		
+	}
+
+	public void MatchPiece(PuzzleAssemblyPiece matchMe)
+	{
+		pieceName = matchMe.pieceName;
+		transform.localScale = matchMe.transform.lossyScale;
+		meshFilter.mesh = matchMe.GetComponent<MeshFilter>()?.sharedMesh;
+		meshCollider.sharedMesh = meshFilter.sharedMesh;
+		transform.rotation = UnityEngine.Random.rotation;
 	}
 
 	public void SetHoverState(bool isActive)
