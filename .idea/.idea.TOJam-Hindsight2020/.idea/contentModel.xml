@@ -308,6 +308,8 @@
         </e>
         <e p="TOJam" t="Include">
           <e p="Scripts" t="Include">
+            <e p="GameInputController.cs" t="Include" />
+            <e p="MenuInputController.cs" t="Include" />
             <e p="SimpleCameraController.cs" t="Include" />
           </e>
         </e>
