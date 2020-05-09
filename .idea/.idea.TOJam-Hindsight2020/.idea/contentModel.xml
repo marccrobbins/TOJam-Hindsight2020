@@ -309,6 +309,7 @@
         <e p="TOJam" t="Include">
           <e p="Scripts" t="Include">
             <e p="ArmController.cs" t="Include" />
+            <e p="AudioManager.cs" t="Include" />
             <e p="Conveyer.cs" t="Include" />
             <e p="GameInputController.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
