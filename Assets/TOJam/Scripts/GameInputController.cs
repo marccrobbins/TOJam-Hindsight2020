@@ -21,7 +21,6 @@ public class GameInputController : MonoBehaviour
         _player.AddInputEventDelegate(OnRightJoystickVertical, UpdateLoopType.Update, AXIS_TYPE, "RightJoystickVertical");
         _player.AddInputEventDelegate(OnLeftTrigger, UpdateLoopType.Update, AXIS_TYPE, "LeftTriggerAction");
         _player.AddInputEventDelegate(OnRightTrigger, UpdateLoopType.Update, AXIS_TYPE, "RightTriggerAction");
-        _player.AddInputEventDelegate(OnMenu, UpdateLoopType.Update, BUTTON_TYPE, "Menu");
     }
 
     private void OnLeftJoystickHorizontal(InputActionEventData data)
@@ -52,14 +51,5 @@ public class GameInputController : MonoBehaviour
     private void OnRightTrigger(InputActionEventData data)
     {
         Debug.LogFormat("Right trigger [{0}]", data.GetAxis());
-    }
-    
-    private void OnMenu(InputActionEventData data)
-    {
-        Debug.Log("Open menu");
-        if (_player == null) return;
-
-        _player.controllers.maps.SetMapsEnabled(true, "Menu");
-        _player.controllers.maps.SetMapsEnabled(false, "InGame");
     }
 }
