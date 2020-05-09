@@ -30,7 +30,7 @@ public class GameManager : Manager
 
     protected override IEnumerator InitializingRoutine()
     {
-	    yield return new WaitUntil(() => AudioManager.Instance && AudioManager.Instance.IsInitialized);
+	    yield return new WaitUntil(() => AudioManager.Instance != null && AudioManager.Instance.IsInitialized);
 	    
 	    AudioManager.Instance.PlayPersistentAudio(new AudioData
 	    {

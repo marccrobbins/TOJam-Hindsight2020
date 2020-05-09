@@ -13,7 +13,7 @@ public class Manager : MonoBehaviour
 
     protected virtual void Initialize()
     {
-        StartCoroutine(InitializedRoutine());
+        StartCoroutine(InitializingRoutine());
     }
 
     protected virtual IEnumerator InitializingRoutine()
