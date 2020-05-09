@@ -57,12 +57,16 @@ public class GameManager : Manager
                 {"Muffle", 0}
             }
         });
-        
-		Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position, PuzzleSpawnLocation.rotation).PreparePuzzle();
-		foreach(PieceSpawner spawner in SpawnersInLevel)
-		{
-			spawner.StartSpawning(PuzzlePrefabLevels[currentLevel].Pieces);
-		}
+
+        if (PuzzlePrefabLevels.Length > 0)
+        {
+	        Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position, PuzzleSpawnLocation.rotation)
+		        .PreparePuzzle();
+	        foreach (PieceSpawner spawner in SpawnersInLevel)
+	        {
+		        spawner.StartSpawning(PuzzlePrefabLevels[currentLevel].Pieces);
+	        }
+        }
     }
 
 	public void SpeedToEnd()
