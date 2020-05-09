@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Manager
 {
     public static GameManager Instance;
+
+    [EventRef] public string musicEvent;
     
     public bool HasStarted { get; private set; }
 
@@ -15,20 +18,56 @@ public class GameManager : MonoBehaviour
 
 	private int currentLevel = 0;
 	private int tries = 3;
-    
-    private void Start()
-    {
+
+	protected override void Initialize()
+	{
+        DontDestroyOnLoad(gameObject);
+        
         Instance = this;
+        
+        base.Initialize();
+    }
+
+    protected override IEnumerator InitializingRoutine()
+    {
+	    yield return new WaitUntil(() => AudioManager.Instance != null && AudioManager.Instance.IsInitialized);
+	    
+	    AudioManager.Instance.PlayPersistentAudio(new AudioData
+	    {
+		    AudioEventName = musicEvent, 
+		    ParameterCollection = new Dictionary<string, float>
+		    {
+			    {"End", 0},
+			    {"Muffle", 1}
+		    }
+	    });
+	    
+	    yield return base.InitializingRoutine();
     }
 
     public void StartGame()
     {
         HasStarted = true;
-		Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position, PuzzleSpawnLocation.rotation).PreparePuzzle();
-		foreach(PieceSpawner spawner in SpawnersInLevel)
-		{
-			spawner.StartSpawning(PuzzlePrefabLevels[currentLevel].Pieces);
-		}
+        
+        AudioManager.Instance.ChangePersistentAudio(new AudioData
+        {
+            AudioEventName = musicEvent,
+            ParameterCollection = new Dictionary<string, float>
+            {
+                {"Muffle", 0}
+            }
+        });
+
+        if (PuzzlePrefabLevels.Length > 0)
+        {
+	        Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position, PuzzleSpawnLocation.rotation)
+		        .PreparePuzzle();
+	        
+	        foreach (PieceSpawner spawner in SpawnersInLevel)
+	        {
+		        spawner.StartSpawning(PuzzlePrefabLevels[currentLevel].Pieces);
+	        }
+        }
     }
 
 	public void SpeedToEnd()
@@ -67,6 +106,15 @@ public class GameManager : MonoBehaviour
 				Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position, PuzzleSpawnLocation.rotation);
 			}
 		}
+		
+		AudioManager.Instance.ChangePersistentAudio(new AudioData
+		{
+			AudioEventName = musicEvent,
+			ParameterCollection = new Dictionary<string, float>
+			{
+				{"End", 1}
+			}
+		});
 	}
 
 }
