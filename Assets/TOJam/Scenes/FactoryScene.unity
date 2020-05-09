@@ -374,7 +374,7 @@ Transform:
   - {fileID: 317322300}
   - {fileID: 1453631960}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &317322299
 GameObject:
@@ -613,7 +613,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &833665266
 PrefabInstance:
@@ -622,6 +622,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6485662859253166707, guid: 567f6b44089208644a0f6bb8b1fce413,
+        type: 3}
+      propertyPath: horizontalAxisName
+      value: LeftJoystickHorizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485662859253166707, guid: 567f6b44089208644a0f6bb8b1fce413,
+        type: 3}
+      propertyPath: verticalAxisName
+      value: LeftJoystickVertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485662859253166707, guid: 567f6b44089208644a0f6bb8b1fce413,
+        type: 3}
+      propertyPath: actionAxisName
+      value: LeftTriggerAction
+      objectReference: {fileID: 0}
     - target: {fileID: 6648533547316494371, guid: 567f6b44089208644a0f6bb8b1fce413,
         type: 3}
       propertyPath: m_Name
@@ -665,7 +680,7 @@ PrefabInstance:
     - target: {fileID: 6648533547316494380, guid: 567f6b44089208644a0f6bb8b1fce413,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6648533547316494380, guid: 567f6b44089208644a0f6bb8b1fce413,
         type: 3}
@@ -689,12 +704,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 567f6b44089208644a0f6bb8b1fce413, type: 3}
---- !u!4 &833665267 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6648533548590881954, guid: 567f6b44089208644a0f6bb8b1fce413,
-    type: 3}
-  m_PrefabInstance: {fileID: 833665266}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &906084039
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,52 +912,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268067877}
   m_CullTransparentMesh: 0
---- !u!1 &1270356291
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1270356293}
-  - component: {fileID: 1270356292}
-  m_Layer: 0
-  m_Name: GameController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1270356292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1270356291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9db549fc41fc0ec44874f6d246d178d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftArmController: {fileID: 833665267}
-  rightArmController: {fileID: 2111763132}
-  moveSpeed: 15
---- !u!4 &1270356293
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1270356291}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1453631959
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,6 +2091,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6485662859253166707, guid: 567f6b44089208644a0f6bb8b1fce413,
+        type: 3}
+      propertyPath: horizontalAxisName
+      value: RightJoystickHorizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485662859253166707, guid: 567f6b44089208644a0f6bb8b1fce413,
+        type: 3}
+      propertyPath: verticalAxisName
+      value: RightJoystickVertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 6485662859253166707, guid: 567f6b44089208644a0f6bb8b1fce413,
+        type: 3}
+      propertyPath: actionAxisName
+      value: RightTriggerAction
+      objectReference: {fileID: 0}
     - target: {fileID: 6648533547316494371, guid: 567f6b44089208644a0f6bb8b1fce413,
         type: 3}
       propertyPath: m_Name
@@ -2171,7 +2149,7 @@ PrefabInstance:
     - target: {fileID: 6648533547316494380, guid: 567f6b44089208644a0f6bb8b1fce413,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6648533547316494380, guid: 567f6b44089208644a0f6bb8b1fce413,
         type: 3}
@@ -2195,12 +2173,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 567f6b44089208644a0f6bb8b1fce413, type: 3}
---- !u!4 &2111763132 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6648533548590881954, guid: 567f6b44089208644a0f6bb8b1fce413,
-    type: 3}
-  m_PrefabInstance: {fileID: 1917126766}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2138677391
 GameObject:
   m_ObjectHideFlags: 0
