@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PuzzleSlot : MonoBehaviour
 {
-	private PuzzlePiece matchingPiece;
+	private PuzzleAssemblyPiece matchingPiece;
 	[SerializeField] private SphereCollider sphere;
 
-	public void StartTrackingPiece(PuzzlePiece pieceToEnable)
+	public void StartTrackingPiece(PuzzleAssemblyPiece pieceToEnable)
 	{
 		matchingPiece = pieceToEnable;
 		sphere.radius = matchingPiece.pieceCollisionSize / 200f;
@@ -21,9 +21,15 @@ public class PuzzleSlot : MonoBehaviour
 
 		if(matchingPiece.pieceName == piece.pieceName)
 		{
-			piece.gameObject.SetActive(false);
-			matchingPiece.gameObject.SetActive(true);
-			gameObject.SetActive(false);
+			piece.StartMagnetizing(this);
+
 		}
+	}
+
+	public void SnapInPlaceDone()
+	{
+		sphere.enabled = false;
+		matchingPiece.gameObject.SetActive(true);
+		gameObject.SetActive(false);
 	}
 }

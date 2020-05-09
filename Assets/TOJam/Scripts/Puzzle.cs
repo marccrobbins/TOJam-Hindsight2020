@@ -5,14 +5,14 @@ using UnityEngine;
 public class Puzzle : MonoBehaviour
 {
 	[SerializeField] private PuzzleSlot SlotPrefab;
-	[SerializeField] private PuzzlePiece[] Pieces;
+	[SerializeField] private PuzzleAssemblyPiece[] Pieces;
 	[SerializeField] private List<PuzzleSlot> Slots;
 	private bool pleaseStopLogging = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach(PuzzlePiece piece in Pieces)
+        foreach(PuzzleAssemblyPiece piece in Pieces)
 		{
 			PuzzleSlot newSlot = Instantiate(SlotPrefab, piece.transform.position, piece.transform.rotation, this.transform);
 			Slots.Add(newSlot);
