@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{69eff04a-4b32-4f23-a89f-31ceaf4804a3}">
+		<property name="name">
+			<value>Muffle</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d9ced534-f9e8-4380-9ac1-d43a04eb8bcc}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{11946f82-676f-4140-b8e8-dc726e23d243}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{11946f82-676f-4140-b8e8-dc726e23d243}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
