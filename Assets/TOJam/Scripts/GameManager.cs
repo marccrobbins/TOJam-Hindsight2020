@@ -87,6 +87,15 @@ public class GameManager : Manager
 			{
 				spawner.StopSpawning();
 			}
+			
+			AudioManager.Instance.ChangePersistentAudio(new AudioData
+			{
+				AudioEventName = musicEvent,
+				ParameterCollection = new Dictionary<string, float>
+				{
+					{"End", 1}
+				}
+			});
 		}
 		else
 		{
@@ -100,6 +109,15 @@ public class GameManager : Manager
 				{
 					spawner.StopSpawning();
 				}
+				
+				AudioManager.Instance.ChangePersistentAudio(new AudioData
+				{
+					AudioEventName = musicEvent,
+					ParameterCollection = new Dictionary<string, float>
+					{
+						{"End", 1}
+					}
+				});
 			}
 			else
 			{
@@ -107,14 +125,7 @@ public class GameManager : Manager
 			}
 		}
 		
-		AudioManager.Instance.ChangePersistentAudio(new AudioData
-		{
-			AudioEventName = musicEvent,
-			ParameterCollection = new Dictionary<string, float>
-			{
-				{"End", 1}
-			}
-		});
+		
 	}
 
 }

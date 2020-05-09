@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 5288043026530913679}
   - {fileID: 6050122853577570376}
   Slots: []
+  PuzzleCompleted: 0
 --- !u!65 &6506964287831205060
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -111,8 +112,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6228842689527767102}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.296, y: 0.25, z: 0.117}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalPosition: {x: -0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4757059348952423395}
   m_RootOrder: 3
@@ -178,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: 4
   pieceCollisionSize: 56.5
+  refMesh: {fileID: 0}
 --- !u!1 &8003158534322147997
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,8 +207,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8003158534322147997}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.128, y: 0.25, z: 0.119}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4757059348952423395}
   m_RootOrder: 0
@@ -272,6 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: 1
   pieceCollisionSize: 56.5
+  refMesh: {fileID: 0}
 --- !u!1 &8121943269536149519
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +303,7 @@ Transform:
   m_GameObject: {fileID: 8121943269536149519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.1, z: 1.4}
+  m_LocalScale: {x: 2, y: 0.1, z: 2.8}
   m_Children: []
   m_Father: {fileID: 2716754459569301987}
   m_RootOrder: 0
@@ -426,8 +429,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8706707270877356519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.128, y: 0.25, z: -0.294}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4757059348952423395}
   m_RootOrder: 1
@@ -493,6 +496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: 2
   pieceCollisionSize: 56.5
+  refMesh: {fileID: 0}
 --- !u!1 &8821413268252699992
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,8 +524,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8821413268252699992}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.296, y: 0.25, z: -0.294}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalPosition: {x: -0.5, y: 0.5, z: -0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4757059348952423395}
   m_RootOrder: 2
@@ -587,3 +591,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pieceName: 3
   pieceCollisionSize: 56.5
+  refMesh: {fileID: 0}

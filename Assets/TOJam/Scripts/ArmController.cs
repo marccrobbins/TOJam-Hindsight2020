@@ -1,10 +1,13 @@
-﻿using Rewired;
+﻿using System;
+using Rewired;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class ArmController : MonoBehaviour
 {
     public PickerTool pickerTool;
     public float moveSpeed;
+    public Vector2 bounds;
     
     [Header("AxisNames")]
     public string horizontalAxisName;
@@ -44,8 +47,20 @@ public class ArmController : MonoBehaviour
         var heading = right + forward;
         heading.y = 0;
         heading *= moveSpeed;
+        heading *= Time.deltaTime;
+        
+        pickerTool.transform.position += heading;
 
-        pickerTool.transform.position += heading * Time.deltaTime;
+        //Bind the arm within a certain bounds
+        var xBoundsHalved = bounds.x * 0.5f;
+        var yBoundsHalved = bounds.y * 0.5f;
+        var localPickerPosition = pickerTool.transform.localPosition;
+        localPickerPosition = new Vector3(
+            Mathf.Clamp(localPickerPosition.x, -xBoundsHalved, xBoundsHalved),
+            localPickerPosition.y, 
+            Mathf.Clamp(localPickerPosition.z, -yBoundsHalved, yBoundsHalved));
+
+        pickerTool.transform.localPosition = localPickerPosition;
     }
 
     private void DoAction(float axis)
@@ -69,5 +84,13 @@ public class ArmController : MonoBehaviour
         }
 
         lastActionAxisValue = axis;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        var position = transform.position;
+        position.y = position.y - 5;
+        Gizmos.DrawWireCube(position, new Vector3(bounds.x, 10, bounds.y));
     }
 }
