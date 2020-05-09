@@ -30,7 +30,7 @@ public class PickerTool : MonoBehaviour
 
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity, validHitMask))
         {
-            var hitObject = hit.collider.GetComponent<PuzzlePiece>();
+            var hitObject = hit.collider.GetComponentInParent<PuzzlePiece>();
             if (hitObject)
             {
                 //Assign hovering piece

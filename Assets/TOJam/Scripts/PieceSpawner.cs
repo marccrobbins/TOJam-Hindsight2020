@@ -24,7 +24,7 @@ public class PieceSpawner : MonoBehaviour
 
 	public void Update()
 	{
-		if(isSpawning)
+		if (isSpawning)
 		{
 			currentSpawnTimer -= Time.deltaTime;
 			if(currentSpawnTimer <= 0f)
