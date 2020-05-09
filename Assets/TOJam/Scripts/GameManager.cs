@@ -62,6 +62,7 @@ public class GameManager : Manager
         {
 	        Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position, PuzzleSpawnLocation.rotation)
 		        .PreparePuzzle();
+	        
 	        foreach (PieceSpawner spawner in SpawnersInLevel)
 	        {
 		        spawner.StartSpawning(PuzzlePrefabLevels[currentLevel].Pieces);
