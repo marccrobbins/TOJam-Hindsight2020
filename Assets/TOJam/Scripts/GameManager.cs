@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using FMODUnity;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Manager
 {
     public static GameManager Instance;
 
@@ -18,22 +18,31 @@ public class GameManager : MonoBehaviour
 
 	private int currentLevel = 0;
 	private int tries = 3;
-    
-    private void Start()
-    {
+
+	protected override void Initialize()
+	{
         DontDestroyOnLoad(gameObject);
         
         Instance = this;
         
-        AudioManager.Instance.PlayPersistentAudio(new AudioData
-        {
-            AudioEventName = musicEvent, 
-            ParameterCollection = new Dictionary<string, float>
-            {
-                {"End", 0},
-                {"Muffle", 1}
-            }
-        });
+        base.Initialize();
+    }
+
+    protected override IEnumerator InitializingRoutine()
+    {
+	    yield return new WaitUntil(() => AudioManager.Instance && AudioManager.Instance.IsInitialized);
+	    
+	    AudioManager.Instance.PlayPersistentAudio(new AudioData
+	    {
+		    AudioEventName = musicEvent, 
+		    ParameterCollection = new Dictionary<string, float>
+		    {
+			    {"End", 0},
+			    {"Muffle", 1}
+		    }
+	    });
+	    
+	    yield return base.InitializingRoutine();
     }
 
     public void StartGame()

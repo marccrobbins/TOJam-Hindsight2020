@@ -6,20 +6,22 @@ using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Manager
 {
     public static AudioManager Instance;
     
     private const string DEBUG_LOG_FORMAT = "AudioManager.{0} :: {1}";
     private const float INSTANCE_RELEASE_DELAY = 10f;
 
-    protected readonly Dictionary<string, List<EventInstance>> EventInstanceMapping = new Dictionary<string, List<EventInstance>>();
-    
-    private void Start()
+    private readonly Dictionary<string, List<EventInstance>> EventInstanceMapping = new Dictionary<string, List<EventInstance>>();
+
+    protected override void Initialize()
     {
 	    DontDestroyOnLoad(gameObject);
 	    
-        Instance = this;
+	    Instance = this;
+	    
+	    base.Initialize();
     }
 
     #region EventInstance
