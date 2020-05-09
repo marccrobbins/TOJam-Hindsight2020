@@ -17,6 +17,10 @@ public class PieceSpawner : MonoBehaviour
 		isSpawning = true;
 		currentSpawnTimer = TimeBetweenPieces;
 	}
+	public void StopSpawning()
+	{
+		isSpawning = false;
+	}
 
 	public void Update()
 	{
