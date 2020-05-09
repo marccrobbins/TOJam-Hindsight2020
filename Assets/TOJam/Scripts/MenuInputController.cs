@@ -23,12 +23,12 @@ public class MenuInputController : MonoBehaviour
     
     private void OnMenuMoveHorizontal(InputActionEventData data)
     {
-        Debug.Log("move horizontal");
+        Debug.LogFormat("move horizontal [{0}]", data.GetAxis());
     }
     
     private void OnMenuMoveVertical(InputActionEventData data)
     {
-        Debug.Log("move vertical");
+        Debug.LogFormat("move vertical [{0}]", data.GetAxis());
     }
 
     private void OnExit(InputActionEventData data)

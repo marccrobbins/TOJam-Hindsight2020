@@ -15,36 +15,43 @@ public class GameInputController : MonoBehaviour
 
         if (_player == null) return;
      
+        _player.AddInputEventDelegate(OnLeftJoystickHorizontal, UpdateLoopType.Update, AXIS_TYPE, "LeftJoystickHorizontal");
+        _player.AddInputEventDelegate(OnLeftJoystickVertical, UpdateLoopType.Update, AXIS_TYPE, "LeftJoystickVertical");
+        _player.AddInputEventDelegate(OnRightJoystickHorizontal, UpdateLoopType.Update, AXIS_TYPE, "RightJoystickHorizontal");
+        _player.AddInputEventDelegate(OnRightJoystickVertical, UpdateLoopType.Update, AXIS_TYPE, "RightJoystickVertical");
+        _player.AddInputEventDelegate(OnLeftTrigger, UpdateLoopType.Update, AXIS_TYPE, "LeftTriggerAction");
+        _player.AddInputEventDelegate(OnRightTrigger, UpdateLoopType.Update, AXIS_TYPE, "RightTriggerAction");
+        _player.AddInputEventDelegate(OnMenu, UpdateLoopType.Update, BUTTON_TYPE, "Menu");
     }
 
     private void OnLeftJoystickHorizontal(InputActionEventData data)
     {
-        Debug.Log("Left arm move horizontal");
+        Debug.LogFormat("Left arm move horizontal [{0}]", data.GetAxis());
     }
     
     private void OnLeftJoystickVertical(InputActionEventData data)
     {
-        Debug.Log("Left arm move vertical");
+        Debug.LogFormat("Left arm move vertical [{0}]", data.GetAxis());
     }
     
     private void OnRightJoystickHorizontal(InputActionEventData data)
     {
-        Debug.Log("Right arm move horizontal");
+        Debug.LogFormat("Right arm move horizontal [{0}]", data.GetAxis());
     }
     
     private void OnRightJoystickVertical(InputActionEventData data)
     {
-        Debug.Log("Rgiht arm move vertical");
+        Debug.LogFormat("Right arm move vertical [{0}]", data.GetAxis());
     }
     
     private void OnLeftTrigger(InputActionEventData data)
     {
-        Debug.Log("Left trigger");
+        Debug.LogFormat("Left trigger [{0}]", data.GetAxis());
     }
     
     private void OnRightTrigger(InputActionEventData data)
     {
-        Debug.Log("Right trigger");
+        Debug.LogFormat("Right trigger [{0}]", data.GetAxis());
     }
     
     private void OnMenu(InputActionEventData data)
