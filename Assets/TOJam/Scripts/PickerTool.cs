@@ -48,11 +48,14 @@ public class PickerTool : MonoBehaviour
 
     public void PickUp()
     {
+        if (currentPuzzlePiece)
+        {
+            currentPuzzlePiece.GotDropped();
+            currentPuzzlePiece = null;
+        } 
         
-    }
-
-    public void Drop()
-    {
-        
+        if (!hoveringPuzzlePiece) return;
+        currentPuzzlePiece = hoveringPuzzlePiece;
+        currentPuzzlePiece.GotPickedUp(holder);
     }
 }

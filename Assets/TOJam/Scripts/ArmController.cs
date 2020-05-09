@@ -58,6 +58,8 @@ public class ArmController : MonoBehaviour
                 axis < lastActionAxisValue)
             {
                 Debug.Log(name + " trigger up");
+                
+                if(pickerTool) pickerTool.PickUp();
                 hasActionTriggered = true;
             }
         }

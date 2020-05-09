@@ -319,6 +319,7 @@
             <e p="PuzzlePiece.cs" t="Include" />
             <e p="PuzzleSlot.cs" t="Include" />
             <e p="SimpleCameraController.cs" t="Include" />
+            <e p="VelocityEstimator.cs" t="Include" />
           </e>
         </e>
       </e>

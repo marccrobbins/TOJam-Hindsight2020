@@ -23,12 +23,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 291564991662181414}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 11.798499}
+  m_LocalScale: {x: 1.9278593, y: 1.9278593, z: 1.9278593}
   m_Children: []
-  m_Father: {fileID: 6648533548590881954}
-  m_RootOrder: 0
+  m_Father: {fileID: 6648533547747345637}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6648533546893180442
 GameObject:
@@ -250,6 +250,7 @@ Transform:
   m_Children:
   - {fileID: 6648533547773829028}
   - {fileID: 6648533548385959985}
+  - {fileID: 7712564580650209796}
   m_Father: {fileID: 6648533548186756775}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -691,8 +692,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -5, z: 6.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7712564580650209796}
+  m_Children: []
   m_Father: {fileID: 6648533548517651359}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -713,7 +713,7 @@ MonoBehaviour:
     m_Bits: 256
   holder: {fileID: 7712564580650209796}
   minimumDistance: 0.1
-  attractionPower: 5
+  attractionPower: 50
   currentPuzzlePiece: {fileID: 0}
   hoveringPuzzlePiece: {fileID: 0}
 --- !u!1 &8647903857336331196
