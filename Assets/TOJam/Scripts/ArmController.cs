@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ArmController : MonoBehaviour
 {
-    public Transform controller;
+    public PickerTool pickerTool;
     public float moveSpeed;
     
     [Header("AxisNames")]
@@ -26,7 +26,8 @@ public class ArmController : MonoBehaviour
 
     private void Update()
     {
-        if(player == null) return;
+        if(player == null || 
+           !pickerTool) return;
 
         MoveArm(new Vector2(player.GetAxis(horizontalAxisName), player.GetAxis(verticalAxisName)));
         DoAction(player.GetAxis(actionAxisName));
@@ -44,7 +45,7 @@ public class ArmController : MonoBehaviour
         heading.y = 0;
         heading *= moveSpeed;
 
-        controller.position += heading * Time.deltaTime;
+        pickerTool.transform.position += heading * Time.deltaTime;
     }
 
     private void DoAction(float axis)
