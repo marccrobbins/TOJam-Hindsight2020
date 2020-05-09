@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
             AudioEventName = musicEvent,
             ParameterCollection = new Dictionary<string, float>
             {
-                {"End", 0},
                 {"Muffle", 0}
             }
         });
@@ -84,6 +83,15 @@ public class GameManager : MonoBehaviour
 				Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position, PuzzleSpawnLocation.rotation);
 			}
 		}
+		
+		AudioManager.Instance.ChangePersistentAudio(new AudioData
+		{
+			AudioEventName = musicEvent,
+			ParameterCollection = new Dictionary<string, float>
+			{
+				{"End", 1}
+			}
+		});
 	}
 
 }
