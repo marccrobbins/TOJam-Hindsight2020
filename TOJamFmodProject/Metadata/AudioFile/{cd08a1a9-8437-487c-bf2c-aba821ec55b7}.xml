@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{cd08a1a9-8437-487c-bf2c-aba821ec55b7}">
+		<property name="assetPath">
+			<value>Music/JazzGameplay_Tempo_02.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>22.0499992</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>12.69827664399093</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{eec41192-4af7-476c-bfa7-65606f8797e8}</destination>
+		</relationship>
+	</object>
+</objects>

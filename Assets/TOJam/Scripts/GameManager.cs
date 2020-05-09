@@ -87,6 +87,15 @@ public class GameManager : Manager
 			{
 				spawner.StopSpawning();
 			}
+			
+			AudioManager.Instance.ChangePersistentAudio(new AudioData
+			{
+				AudioEventName = musicEvent,
+				ParameterCollection = new Dictionary<string, float>
+				{
+					{"End", 1}
+				}
+			});
 		}
 		else
 		{
@@ -100,21 +109,23 @@ public class GameManager : Manager
 				{
 					spawner.StopSpawning();
 				}
+				
+				AudioManager.Instance.ChangePersistentAudio(new AudioData
+				{
+					AudioEventName = musicEvent,
+					ParameterCollection = new Dictionary<string, float>
+					{
+						{"End", 1}
+					}
+				});
 			}
 			else
 			{
-				Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position, PuzzleSpawnLocation.rotation);
+				Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position, PuzzleSpawnLocation.rotation).PreparePuzzle();
 			}
 		}
 		
-		AudioManager.Instance.ChangePersistentAudio(new AudioData
-		{
-			AudioEventName = musicEvent,
-			ParameterCollection = new Dictionary<string, float>
-			{
-				{"End", 1}
-			}
-		});
+		
 	}
 
 }
