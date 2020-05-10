@@ -5,15 +5,16 @@ using UnityEngine;
 public class Puzzle : MonoBehaviour
 {
 	[SerializeField] private PuzzleSlot SlotPrefab;
-	[SerializeField] private PuzzleAssemblyPiece[] Pieces;
+	public PuzzleAssemblyPiece[] Pieces;
 	[SerializeField] private List<PuzzleSlot> Slots;
 	private bool pleaseStopLogging = false;
-
-    // Start is called before the first frame update
-    void Start()
+	public bool PuzzleCompleted = false;
+	
+    public void PreparePuzzle()
     {
         foreach(PuzzleAssemblyPiece piece in Pieces)
 		{
+			piece.GrabMesh();
 			PuzzleSlot newSlot = Instantiate(SlotPrefab, piece.transform.position, piece.transform.rotation, this.transform);
 			Slots.Add(newSlot);
 			newSlot.StartTrackingPiece(piece);
@@ -40,9 +41,8 @@ public class Puzzle : MonoBehaviour
 
 	private void PuzzleDone()
 	{
-		Debug.Log("YA DONE");
-		Debug.LogWarning("YA DONE");
-		Debug.LogError("YA DONE");
 		pleaseStopLogging = true;
+		PuzzleCompleted = true;
+		GameManager.Instance.SpeedToEnd();
 	}
 }
