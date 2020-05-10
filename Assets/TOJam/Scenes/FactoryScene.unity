@@ -5047,7 +5047,7 @@ PrefabInstance:
     - target: {fileID: 7589735075938321157, guid: ac1da30008a8de449bdac77296ab2585,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.4
+      value: 12.1
       objectReference: {fileID: 0}
     - target: {fileID: 7589735075938321157, guid: ac1da30008a8de449bdac77296ab2585,
         type: 3}
@@ -8410,6 +8410,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 432661157}
     m_Modifications:
+    - target: {fileID: 6513386432860052872, guid: 52e86bc6a5d4830428a15ab37f6f1b4a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
     - target: {fileID: 6513386433228390404, guid: 52e86bc6a5d4830428a15ab37f6f1b4a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8475,5 +8480,10 @@ PrefabInstance:
       propertyPath: musicController
       value: 
       objectReference: {fileID: 463235236}
+    - target: {fileID: 6513386434852868171, guid: 52e86bc6a5d4830428a15ab37f6f1b4a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52e86bc6a5d4830428a15ab37f6f1b4a, type: 3}

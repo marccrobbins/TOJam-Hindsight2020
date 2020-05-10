@@ -42,6 +42,8 @@ public class GameManager : Manager
 
     public void StartGame()
     {
+	    ResetGame();
+	    
         HasStarted = true;
         
         if (musicController) musicController.SetMuffle(false);
