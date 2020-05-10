@@ -30,7 +30,7 @@ public class GameManager : Manager
         Instance = this;
 
         player = ReInput.players.GetPlayer(0);
-        player?.AddInputEventDelegate(OnMenuPressed, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Menu");
+        player?.AddInputEventDelegate(OnOpenMenu, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Menu");
         
         base.Initialize();
     }
@@ -52,7 +52,7 @@ public class GameManager : Manager
 	    yield return base.InitializingRoutine();
     }
 
-    private void OnMenuPressed(InputActionEventData data)
+    private void OnOpenMenu(InputActionEventData data)
     {
 	    if (!menuController) return;
 	    menuController.ShowSettings();
