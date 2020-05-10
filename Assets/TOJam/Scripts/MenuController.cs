@@ -5,7 +5,7 @@ public class MenuController : MonoBehaviour
 {
     private const InputActionEventType BUTTON_TYPE = InputActionEventType.ButtonJustReleased;
     private const InputActionEventType AXIS_TYPE = InputActionEventType.AxisActive;
-
+    public MusicController musicController;
     public CanvasGroup startingCanvasGroup;
     public CanvasGroup settingsCanvasGroup;
     public CanvasGroup creditsCanvasGroup;
@@ -21,8 +21,19 @@ public class MenuController : MonoBehaviour
         currentCanvasGroup = startingCanvasGroup;
         
         player = ReInput.players.GetPlayer(0);
+        player?.AddInputEventDelegate(OnOpenMenu, UpdateLoopType.Update, BUTTON_TYPE, "Menu");
         player?.AddInputEventDelegate(OnCloseMenu, UpdateLoopType.Update, BUTTON_TYPE, "Exit");
         player?.AddInputEventDelegate(OnBack, UpdateLoopType.Update, BUTTON_TYPE, "Back");
+    }
+    
+    private void OnOpenMenu(InputActionEventData data)
+    {
+        ShowSettings();
+	    
+        player.controllers.maps.SetMapsEnabled(true, "Menu");
+        player.controllers.maps.SetMapsEnabled(false, "InGame");
+	    
+        if (musicController) musicController.SetMuffle(true);
     }
     
     private void OnCloseMenu(InputActionEventData data)
@@ -34,6 +45,7 @@ public class MenuController : MonoBehaviour
         player.controllers.maps.SetMapsEnabled(true, "InGame");
 
         TransitionMenu(null);
+        if(musicController) musicController.SetMuffle(false);
     }
     
     private void OnBack(InputActionEventData data)
@@ -41,6 +53,7 @@ public class MenuController : MonoBehaviour
         if (GameManager.Instance.HasStarted)
         {
             TransitionMenu(null);
+            if(musicController) musicController.SetMuffle(false);
         }
 
         if (currentCanvasGroup == startingCanvasGroup) return;

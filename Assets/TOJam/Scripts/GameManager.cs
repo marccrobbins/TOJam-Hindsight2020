@@ -9,17 +9,15 @@ public class GameManager : Manager
 {
     public static GameManager Instance;
 
-    [EventRef] public string musicEvent;
-    
     public bool HasStarted { get; private set; }
 
+    [SerializeField] private MusicController musicController;
     [SerializeField] private MenuController menuController;
 	[SerializeField] private Transform PuzzleSpawnLocation;
 	[SerializeField] private Puzzle[] PuzzlePrefabLevels;
 	[SerializeField] private Conveyer[] ConveyersInLevel;
 	[SerializeField] private PieceSpawner[] SpawnersInLevel;
 
-	private Player player;
 	private int currentLevel = 0;
 	private int tries = 3;
 
@@ -29,9 +27,6 @@ public class GameManager : Manager
         
         Instance = this;
 
-        player = ReInput.players.GetPlayer(0);
-        player?.AddInputEventDelegate(OnOpenMenu, UpdateLoopType.Update, InputActionEventType.ButtonJustReleased, "Menu");
-        
         base.Initialize();
     }
 
@@ -39,49 +34,16 @@ public class GameManager : Manager
     {
 	    yield return new WaitUntil(() => AudioManager.Instance != null && AudioManager.Instance.IsInitialized);
 	    
-	    AudioManager.Instance.PlayPersistentAudio(new AudioData
-	    {
-		    AudioEventName = musicEvent, 
-		    ParameterCollection = new Dictionary<string, float>
-		    {
-			    {"End", 0},
-			    {"Muffle", 1}
-		    }
-	    });
+	    if (musicController) musicController.StartMusic();
 	    
 	    yield return base.InitializingRoutine();
-    }
-
-    private void OnOpenMenu(InputActionEventData data)
-    {
-	    if (!menuController) return;
-	    menuController.ShowSettings();
-	    
-	    player.controllers.maps.SetMapsEnabled(true, "Menu");
-	    player.controllers.maps.SetMapsEnabled(false, "InGame");
-	    
-	    AudioManager.Instance.ChangePersistentAudio(new AudioData
-	    {
-		    AudioEventName = musicEvent, 
-		    ParameterCollection = new Dictionary<string, float>
-		    {
-			    {"Muffle", 1}
-		    }
-	    });
     }
 
     public void StartGame()
     {
         HasStarted = true;
         
-        AudioManager.Instance.ChangePersistentAudio(new AudioData
-        {
-            AudioEventName = musicEvent,
-            ParameterCollection = new Dictionary<string, float>
-            {
-                {"Muffle", 0}
-            }
-        });
+        if (musicController) musicController.SetMuffle(false);
 
         if (PuzzlePrefabLevels.Length > 0)
         {
@@ -135,14 +97,7 @@ public class GameManager : Manager
 			spawner.StopSpawning();
 		}
 			
-		AudioManager.Instance.ChangePersistentAudio(new AudioData
-		{
-			AudioEventName = musicEvent,
-			ParameterCollection = new Dictionary<string, float>
-			{
-				{"End", 1}
-			}
-		});
+		if (musicController) musicController.EndMusic();
 
 		if (!menuController) return;
 		if (hasWon) menuController.ShowWinState();
