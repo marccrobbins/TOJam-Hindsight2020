@@ -32,4 +32,15 @@ public class PuzzleSlot : MonoBehaviour
 		matchingPiece.gameObject.SetActive(true);
 		gameObject.SetActive(false);
 	}
+
+	public bool AmIThisPiece(string name)
+	{
+		return matchingPiece.pieceName == name;
+	}
+
+	public void IveBeenYanked()
+	{
+		matchingPiece.gameObject.SetActive(false);
+		gameObject.SetActive(true);
+	}
 }
