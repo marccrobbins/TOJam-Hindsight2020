@@ -101,12 +101,18 @@ public class MenuController : MonoBehaviour
     {
         if (!winStateCanvasGroup) return;
         TransitionMenu(winStateCanvasGroup);
+        
+        player.controllers.maps.SetMapsEnabled(true, "Menu");
+        player.controllers.maps.SetMapsEnabled(false, "InGame");
     }
 
     public void ShowLoseState()
     {
         if (!loseStateCanvasGroup) return;
         TransitionMenu(loseStateCanvasGroup);
+        
+        player.controllers.maps.SetMapsEnabled(true, "Menu");
+        player.controllers.maps.SetMapsEnabled(false, "InGame");
     }
     
     #endregion EndStates
