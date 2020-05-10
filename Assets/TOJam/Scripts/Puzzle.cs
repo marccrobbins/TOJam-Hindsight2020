@@ -47,4 +47,15 @@ public class Puzzle : MonoBehaviour
 		PuzzleCompleted = true;
 		GameManager.Instance.EndGame(PuzzleCompleted);
 	}
+
+	public void ResetPuzzle()
+	{
+		foreach (var slot in new List<PuzzleSlot>(Slots))
+		{
+			if (!slot) continue;
+			Destroy(slot.gameObject);
+		}
+		
+		Slots.Clear();
+	}
 }

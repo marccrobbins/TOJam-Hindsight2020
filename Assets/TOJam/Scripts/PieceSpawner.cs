@@ -10,6 +10,8 @@ public class PieceSpawner : MonoBehaviour
 	public float TimeBetweenPieces = 1f;
 	private float currentSpawnTimer = 0f;
 
+	private List<GameObject> spawnedPieces = new List<GameObject>();
+
 	public void StartSpawning(PuzzleAssemblyPiece[] refPieces)
 	{
 		ReferencePieces = new List<PuzzleAssemblyPiece>( refPieces);
@@ -22,12 +24,28 @@ public class PieceSpawner : MonoBehaviour
 		isSpawning = false;
 	}
 
+	public void ResetSpawner()
+	{
+		StopSpawning();
+
+		if (spawnedPieces == null ||
+		    spawnedPieces.Count == 0) return;
+
+		foreach (var piece in new List<GameObject>(spawnedPieces))
+		{
+			if (!piece) continue;
+			Destroy(piece.gameObject);
+		}
+		
+		spawnedPieces.Clear();
+	}
+
 	public void Update()
 	{
 		if (isSpawning)
 		{
 			currentSpawnTimer -= Time.deltaTime;
-			if(currentSpawnTimer <= 0f)
+			if (currentSpawnTimer <= 0f)
 			{
 				SpawnPiece();
 				currentSpawnTimer = TimeBetweenPieces;
@@ -37,9 +55,10 @@ public class PieceSpawner : MonoBehaviour
 
 	private void SpawnPiece()
 	{
-		PuzzlePiece newPiece = Instantiate(PiecePrefab, transform.position, transform.rotation);
+		var newPiece = Instantiate(PiecePrefab, transform.position, transform.rotation);
+		spawnedPieces.Add(newPiece.gameObject);
 		
-		PuzzleAssemblyPiece matchMe = ReferencePieces[0];
+		var matchMe = ReferencePieces[0];
 		ReferencePieces.RemoveAt(0);
 
 		newPiece.MatchPiece(matchMe);

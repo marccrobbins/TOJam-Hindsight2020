@@ -18,6 +18,7 @@ public class GameManager : Manager
 	[SerializeField] private Conveyer[] ConveyersInLevel;
 	[SerializeField] private PieceSpawner[] SpawnersInLevel;
 
+	private Puzzle activePuzzle;
 	private int currentLevel = 0;
 	private int tries = 3;
 
@@ -47,8 +48,9 @@ public class GameManager : Manager
 
         if (PuzzlePrefabLevels.Length > 0)
         {
-	        Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position, PuzzleSpawnLocation.rotation)
-		        .PreparePuzzle();
+	        activePuzzle = Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position,
+		        PuzzleSpawnLocation.rotation);
+	        activePuzzle.PreparePuzzle();
 	        
 	        foreach (var spawner in SpawnersInLevel)
 	        {
@@ -76,13 +78,14 @@ public class GameManager : Manager
 		}
 		
 		//Speed up conveyor belts
-		foreach (var conv in ConveyersInLevel)
-		{
-			conv.SpeedUp();
-		}
+//		foreach (var conv in ConveyersInLevel)
+//		{
+//			conv.SpeedUp();
+//		}
 		
 		//Create a new puzzle
-		Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position, PuzzleSpawnLocation.rotation).PreparePuzzle();
+		activePuzzle = Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position, PuzzleSpawnLocation.rotation);
+		activePuzzle.PreparePuzzle();
 	}
 
 	//Ends the level
@@ -102,5 +105,27 @@ public class GameManager : Manager
 		if (!menuController) return;
 		if (hasWon) menuController.ShowWinState();
 		else menuController.ShowLoseState();
+	}
+
+	public void ResetGame()
+	{
+		if (!HasStarted) return; 
+		
+		Time.timeScale = 1;
+		
+		PuzzlePrefabLevels[currentLevel].ResetPuzzle();
+		Destroy(activePuzzle.gameObject);
+
+		foreach (var conveyor in ConveyersInLevel)
+		{
+			if (!conveyor) continue;
+			conveyor.SlowDown();
+		}
+
+		foreach (var spawner in SpawnersInLevel)
+		{
+			if (!spawner) continue;
+			spawner.ResetSpawner();
+		}
 	}
 }
