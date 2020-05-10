@@ -8,7 +8,7 @@ public class DespawnZone : MonoBehaviour
 	{
 		//Destroy puzzle
 		var puzz = other.GetComponent<Puzzle>();
-		if(!puzz)
+		if (puzz)
 		{
 			GameManager.Instance.TryAgain();
 			Destroy(other.gameObject);
@@ -16,6 +16,6 @@ public class DespawnZone : MonoBehaviour
 		
 		//Destroy puzzle piece
 		var piece = other.GetComponent<PuzzlePiece>();
-		if (!piece) Destroy(other.gameObject);
+		if (piece) Destroy(other.gameObject);
 	}
 }

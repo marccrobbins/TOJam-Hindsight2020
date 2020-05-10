@@ -92,7 +92,7 @@ public class AudioManager : Manager
 		
 		#endregion EventInstance
 
-		#region PersistentAudio
+	#region PersistentAudio
 
 		public virtual void PlayPersistentAudio(AudioData data)
 		{
@@ -174,7 +174,7 @@ public class AudioManager : Manager
 		
 		#endregion PersistentAudio
 
-		#region OneShot
+	#region OneShot
 
 		public virtual void PlayOneShot(string audioEventName, GameObject attachPoint = null)
 		{
