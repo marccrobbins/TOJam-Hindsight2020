@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5234496973887421092}
   m_Layer: 0
   m_Name: ZippyBot
-  m_TagString: Untagged
+  m_TagString: Conveyer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Waypoints: []
   agent: {fileID: 2972069649679755373}
+  piecePrefab: {fileID: 3749240448754385564, guid: 701aa020d13cb9c4182c57fc922c13a1,
+    type: 3}
+  waitTimer: 0
 --- !u!195 &2972069649679755373
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -56,7 +59,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2972069649679755370}
   m_Enabled: 1
-  m_AgentTypeID: -1372625422
+  m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
