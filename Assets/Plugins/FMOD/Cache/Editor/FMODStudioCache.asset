@@ -1,10 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-<<<<<<< HEAD
---- !u!114 &-52616550594276904
-=======
---- !u!114 &-9181444371611033782
->>>>>>> master
+--- !u!114 &-8753477010194889871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14,72 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
+  m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: TOJamFmodProject/Build/Desktop/Master.bank
+  Path: TOJamFmodProject/Build/Desktop/Master.strings.bank
   SubDir: 
-<<<<<<< HEAD
-  lastModified: 637245734129557179
+  lastModified: 637246523611074520
   LoadResult: 0
-  FileSizes: []
-=======
-  lastModified: 637246302817175781
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &-6326080485330682741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Music/End
-  m_EditorClassIdentifier: 
-  Name: End
-  Min: 0
-  Max: 2
-  Default: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 878
   Exists: 1
---- !u!114 &-5464631485458438707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: TOJamFmodProject/Build/Desktop/Master.bank
-  SubDir: 
-  lastModified: 637246302817175781
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &-4152504942843292750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Music/Muffle
-  m_EditorClassIdentifier: 
-  Name: Muffle
-  Min: 0
-  Max: 1
-  Default: 0
-  Exists: 0
---- !u!114 &-3752927481143337689
+--- !u!114 &-8554365285760048774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,17 +35,52 @@ MonoBehaviour:
   Path: event:/Music/Music
   guid: cf20e616e5ce3848a59547e5cba750db
   Banks:
-  - {fileID: 976528154199273139}
+  - {fileID: -6051093108001359778}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -6326080485330682741}
-  - {fileID: -972906916054732218}
+  - {fileID: -8364774616733455324}
+  - {fileID: -2740120000078213323}
   MinDistance: 1
   MaxDistance: 20
   Length: 39742
---- !u!114 &-972906916054732218
+--- !u!114 &-8364774616733455324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/End
+  m_EditorClassIdentifier: 
+  Name: End
+  Min: 0
+  Max: 2
+  Default: 0
+  Exists: 1
+--- !u!114 &-6051093108001359778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: TOJamFmodProject/Build/Desktop/Music.bank
+  SubDir: 
+  lastModified: 637246523611124385
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-2740120000078213323
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,7 +96,6 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
->>>>>>> master
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -135,30 +110,19 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 1428585689782291698}
-<<<<<<< HEAD
-  - {fileID: -52616550594276904}
-  EditorEvents: []
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: -52616550594276904}
-  StringsBanks:
-  - {fileID: 1428585689782291698}
-  stringsBankWriteTime: 637245734129557179
-=======
-  - {fileID: -5464631485458438707}
-  - {fileID: 976528154199273139}
+  - {fileID: -8753477010194889871}
+  - {fileID: 2673249190011939690}
+  - {fileID: -6051093108001359778}
   EditorEvents:
-  - {fileID: -3752927481143337689}
+  - {fileID: -8554365285760048774}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -5464631485458438707}
+  - {fileID: 2673249190011939690}
   StringsBanks:
-  - {fileID: 1428585689782291698}
-  stringsBankWriteTime: 637246332413723736
->>>>>>> master
+  - {fileID: -8753477010194889871}
+  stringsBankWriteTime: 637246523611074520
   cacheVersion: 3
---- !u!114 &380491553487988526
+--- !u!114 &2673249190011939690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,172 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: TOJamFmodProject/Build/Desktop/Master.bank
   SubDir: 
-  lastModified: 637246302059968128
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &976528154199273139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Music.bank
-  m_EditorClassIdentifier: 
-  Path: TOJamFmodProject/Build/Desktop/Music.bank
-  SubDir: 
-  lastModified: 637246332566348256
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &1428585689782291698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: TOJamFmodProject/Build/Desktop/Master.strings.bank
-  SubDir: 
-<<<<<<< HEAD
   lastModified: 637245734129557179
-=======
-  lastModified: 637246332413723736
->>>>>>> master
   LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 878
+  FileSizes: []
   Exists: 1
---- !u!114 &3939900198376926533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Music/End
-  m_EditorClassIdentifier: 
-  Name: End
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
---- !u!114 &4857378351584570284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Music.bank
-  m_EditorClassIdentifier: 
-  Path: TOJamFmodProject/Build/Desktop/Music.bank
-  SubDir: 
-  lastModified: 637246316381457849
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &6975141909398079473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Music/Muffle
-  m_EditorClassIdentifier: 
-  Name: Muffle
-  Min: 0
-  Max: 1
-  Default: 0
-  Exists: 0
---- !u!114 &8236811758309880230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: TOJamFmodProject/Build/Desktop/Master.bank
-  SubDir: 
-  lastModified: 637246302817175781
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &8356198254256937791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: TOJamFmodProject/Build/Desktop/Master.bank
-  SubDir: 
-  lastModified: 637244910662373897
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &8723494565046984992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Music.bank
-  m_EditorClassIdentifier: 
-  Path: TOJamFmodProject/Build/Desktop/Music.bank
-  SubDir: 
-  lastModified: 637246302827466033
-  LoadResult: 0
-  FileSizes: []
-  Exists: 0
---- !u!114 &9111533645507136058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Music/End
-  m_EditorClassIdentifier: 
-  Name: End
-  Min: 0
-  Max: 2
-  Default: 0
-  Exists: 0
