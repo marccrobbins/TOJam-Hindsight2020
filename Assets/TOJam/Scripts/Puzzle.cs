@@ -25,8 +25,8 @@ public class Puzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		bool isDone = true;
-        foreach(PuzzleSlot slot in Slots)
+		var isDone = true;
+        foreach(var slot in Slots)
 		{
 			if(slot.gameObject.activeSelf)
 			{
@@ -45,6 +45,6 @@ public class Puzzle : MonoBehaviour
 	{
 		pleaseStopLogging = true;
 		PuzzleCompleted = true;
-		GameManager.Instance.SpeedToEnd();
+		GameManager.Instance.EndGame(PuzzleCompleted);
 	}
 }
