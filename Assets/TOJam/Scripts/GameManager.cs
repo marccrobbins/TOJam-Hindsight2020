@@ -49,7 +49,7 @@ public class GameManager : Manager
     {
         HasStarted = true;
         
-        AudioManager.Instance.ChangePersistentAudio(new AudioData
+        AudioManager.Instance?.ChangePersistentAudio(new AudioData
         {
             AudioEventName = musicEvent,
             ParameterCollection = new Dictionary<string, float>

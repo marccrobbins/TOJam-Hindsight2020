@@ -16,6 +16,7 @@ public class Puzzle : MonoBehaviour
 		{
 			piece.GrabMesh();
 			PuzzleSlot newSlot = Instantiate(SlotPrefab, piece.transform.position, piece.transform.rotation, this.transform);
+			piece.matchingSlot = newSlot;
 			Slots.Add(newSlot);
 			newSlot.StartTrackingPiece(piece);
 		}
