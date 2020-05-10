@@ -1,10 +1,13 @@
 ﻿using Rewired;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MenuController : MonoBehaviour
 {
     private const InputActionEventType BUTTON_TYPE = InputActionEventType.ButtonJustReleased;
     private const InputActionEventType AXIS_TYPE = InputActionEventType.AxisActive;
+
+    public EventSystem eventSystem;
     public MusicController musicController;
     public CanvasGroup startingCanvasGroup;
     public CanvasGroup settingsCanvasGroup;
@@ -29,6 +32,8 @@ public class MenuController : MonoBehaviour
     private void OnOpenMenu(InputActionEventData data)
     {
         ShowSettings();
+
+        Time.timeScale = 0;
 	    
         player.controllers.maps.SetMapsEnabled(true, "Menu");
         player.controllers.maps.SetMapsEnabled(false, "InGame");
@@ -40,6 +45,8 @@ public class MenuController : MonoBehaviour
     {
         if (player == null ||
             !GameManager.Instance.HasStarted) return;
+
+        Time.timeScale = 1;
         
         player.controllers.maps.SetMapsEnabled(false, "Menu");
         player.controllers.maps.SetMapsEnabled(true, "InGame");
@@ -52,8 +59,7 @@ public class MenuController : MonoBehaviour
     {
         if (GameManager.Instance.HasStarted)
         {
-            TransitionMenu(null);
-            if(musicController) musicController.SetMuffle(false);
+            OnCloseMenu(data);
         }
 
         if (currentCanvasGroup == startingCanvasGroup) return;
@@ -119,6 +125,7 @@ public class MenuController : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        GameManager.Instance.ResetGame();
         TransitionMenu(startingCanvasGroup);
     }
 
@@ -126,16 +133,27 @@ public class MenuController : MonoBehaviour
     {
         if (!nextMenu)
         {
-            currentCanvasGroup.alpha = 0;
-            currentCanvasGroup.interactable = false;
+            if (currentCanvasGroup)
+            {
+                currentCanvasGroup.alpha = 0;
+                currentCanvasGroup.interactable = false;
+            }
+
+            currentCanvasGroup = null;
+            lastCanvasGroup = null;
             return;
         }
         
         lastCanvasGroup = currentCanvasGroup;
         currentCanvasGroup = nextMenu;
         
+        var currentMenuTransform = currentCanvasGroup.transform;
+        if (eventSystem) eventSystem.SetSelectedGameObject(currentMenuTransform.GetChild(0).gameObject);
+        
         currentCanvasGroup.alpha = 1;
         currentCanvasGroup.interactable = true;
+
+        if (!lastCanvasGroup) return;
         lastCanvasGroup.alpha = 0;
         lastCanvasGroup.interactable = false;
     }

@@ -81,8 +81,7 @@ public class PuzzlePiece : MonoBehaviour
 
 	public void Update()
 	{
-	
-		if(isMagnetizing)
+		if (isMagnetizing)
 		{
 			if (Vector3.Distance(transform.position, magnetizingTarget.transform.position) < snapInPlaceThreshold)
 			{
@@ -106,5 +105,10 @@ public class PuzzlePiece : MonoBehaviour
 				transform.SetPositionAndRotation(newPos, newRot);
 			}
 		}
+	}
+
+	private void OnDestroy()
+	{
+		
 	}
 }
