@@ -109,12 +109,14 @@ public class GameManager : Manager
 
 	public void ResetGame()
 	{
-		if (!HasStarted) return; 
-		
+		if (!HasStarted) return;
+
+		HasStarted = false;
 		Time.timeScale = 1;
+		tries = 3;
 		
 		PuzzlePrefabLevels[currentLevel].ResetPuzzle();
-		Destroy(activePuzzle.gameObject);
+		if (activePuzzle) Destroy(activePuzzle.gameObject);
 
 		foreach (var conveyor in ConveyersInLevel)
 		{
