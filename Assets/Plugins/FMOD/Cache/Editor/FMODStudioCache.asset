@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: TOJamFmodProject/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637246523611074520
+  lastModified: 637246332413723736
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -35,13 +35,13 @@ MonoBehaviour:
   Path: event:/Music/Music
   guid: cf20e616e5ce3848a59547e5cba750db
   Banks:
-  - {fileID: -6051093108001359778}
+  - {fileID: 250378784364157029}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -8364774616733455324}
-  - {fileID: -2740120000078213323}
+  - {fileID: 7790518775408964631}
+  - {fileID: -3978768244740421915}
   MinDistance: 1
   MaxDistance: 20
   Length: 39742
@@ -80,6 +80,23 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-3978768244740421915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/Muffle
+  m_EditorClassIdentifier: 
+  Name: Muffle
+  Min: 0
+  Max: 1
+  Default: 0
+  Exists: 1
 --- !u!114 &-2740120000078213323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,17 +128,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -8753477010194889871}
-  - {fileID: 2673249190011939690}
-  - {fileID: -6051093108001359778}
+  - {fileID: 6063721977593592856}
+  - {fileID: 250378784364157029}
   EditorEvents:
   - {fileID: -8554365285760048774}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 2673249190011939690}
+  - {fileID: 6063721977593592856}
   StringsBanks:
   - {fileID: -8753477010194889871}
-  stringsBankWriteTime: 637246523611074520
+  stringsBankWriteTime: 637246332413723736
   cacheVersion: 3
+--- !u!114 &250378784364157029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: TOJamFmodProject/Build/Desktop/Music.bank
+  SubDir: 
+  lastModified: 637246332566348256
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &2673249190011939690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,4 +174,39 @@ MonoBehaviour:
   lastModified: 637245734129557179
   LoadResult: 0
   FileSizes: []
+  Exists: 1
+--- !u!114 &6063721977593592856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: TOJamFmodProject/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637246302817175781
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &7790518775408964631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/End
+  m_EditorClassIdentifier: 
+  Name: End
+  Min: 0
+  Max: 2
+  Default: 0
   Exists: 1

@@ -78,6 +78,12 @@
             </e>
           </e>
         </e>
+        <e p="PolygonSciFiCity" t="Include">
+          <e p="Shaders" t="Include">
+            <e p="Polygon_Triplanar.shader" t="Include" />
+            <e p="Polygon_UVScroll.shader" t="Include" />
+          </e>
+        </e>
         <e p="Rewired" t="Include">
           <e p="Documentation" t="Include">
             <e p="licences.txt" t="Include" />
@@ -326,6 +332,7 @@
             <e p="PuzzleSlot.cs" t="Include" />
             <e p="SimpleCameraController.cs" t="Include" />
             <e p="VelocityEstimator.cs" t="Include" />
+            <e p="ZippyBot.cs" t="Include" />
           </e>
         </e>
       </e>
