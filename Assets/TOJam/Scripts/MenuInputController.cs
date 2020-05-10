@@ -6,67 +6,70 @@ public class MenuInputController : MonoBehaviour
     private const InputActionEventType BUTTON_TYPE = InputActionEventType.ButtonJustReleased;
     private const InputActionEventType AXIS_TYPE = InputActionEventType.AxisActive;
 
-    [SerializeField] private CanvasGroup startingCanvasGroup;
-    [SerializeField] private CanvasGroup settingsCanvasGroup;
+    public CanvasGroup startingCanvasGroup;
+    public CanvasGroup settingsCanvasGroup;
+    public CanvasGroup creditsCanvasGroup;
+    public CanvasGroup winStateCanvasGroup;
+    public CanvasGroup loseStateCanvasGroup;
     
-    private Player _player;
+    private Player player;
+    private CanvasGroup currentCanvasGroup;
+    private CanvasGroup lastCanvasGroup;
 
     private void Start()
     {
-        _player = ReInput.players.GetPlayer(0);
+        player = ReInput.players.GetPlayer(0);
 
-        if (_player == null) return;
+        if (player == null) return;
         
-        _player.AddInputEventDelegate(OnCloseMenu, UpdateLoopType.Update, BUTTON_TYPE, "Exit");
-        _player.AddInputEventDelegate(OnOpenMenu, UpdateLoopType.Update, BUTTON_TYPE, "Menu");
-        _player.AddInputEventDelegate(OnBack, UpdateLoopType.Update, BUTTON_TYPE, "Back");
+        player.AddInputEventDelegate(OnCloseMenu, UpdateLoopType.Update, BUTTON_TYPE, "Exit");
+        player.AddInputEventDelegate(OnOpenMenu, UpdateLoopType.Update, BUTTON_TYPE, "Menu");
+        player.AddInputEventDelegate(OnBack, UpdateLoopType.Update, BUTTON_TYPE, "Back");
     }
     
     private void OnCloseMenu(InputActionEventData data)
     {
-        if (_player == null ||
+        if (player == null ||
             !GameManager.Instance.HasStarted) return;
         
-        Debug.Log("exit menu");
-        
-        Time.timeScale = 1;
+        player.controllers.maps.SetMapsEnabled(false, "Menu");
+        player.controllers.maps.SetMapsEnabled(true, "InGame");
 
-        _player.controllers.maps.SetMapsEnabled(false, "Menu");
-        _player.controllers.maps.SetMapsEnabled(true, "InGame");
-
-        if (startingCanvasGroup) startingCanvasGroup.alpha = 0;
+        TransitionMenu(null);
     }
     
     private void OnOpenMenu(InputActionEventData data)
     {
-        if (_player == null ||
+        if (player == null ||
             !GameManager.Instance.HasStarted) return;
         
-        Debug.Log("open menu");
-        
-        Time.timeScale = 0;
+        player.controllers.maps.SetMapsEnabled(true, "Menu");
+        player.controllers.maps.SetMapsEnabled(false, "InGame");
 
-        _player.controllers.maps.SetMapsEnabled(true, "Menu");
-        _player.controllers.maps.SetMapsEnabled(false, "InGame");
-
-        if (startingCanvasGroup) startingCanvasGroup.alpha = 1;
+        TransitionMenu(settingsCanvasGroup);
     }
     
     private void OnBack(InputActionEventData data)
     {
-        Debug.Log("back");
+        if (GameManager.Instance.HasStarted)
+        {
+            TransitionMenu(null);
+        }
 
-
+        if (lastCanvasGroup == startingCanvasGroup) return;
+        TransitionMenu(lastCanvasGroup);
     }
+
+    #region MainMenu
 
     public void Play()
     {
-        if (startingCanvasGroup) startingCanvasGroup.alpha = 0;
+        TransitionMenu(null);
         
         GameManager.Instance.StartGame();
         
-        _player.controllers.maps.SetMapsEnabled(false, "Menu");
-        _player.controllers.maps.SetMapsEnabled(true, "InGame");
+        player.controllers.maps.SetMapsEnabled(false, "Menu");
+        player.controllers.maps.SetMapsEnabled(true, "InGame");
         
         //Tell game manager to start the game
         //If we make more levels then level select
@@ -74,14 +77,65 @@ public class MenuInputController : MonoBehaviour
 
     public void ShowSettings()
     {
-//        if (!settingsCanvasGroup) return;
-//
-//        settingsCanvasGroup.alpha = 1;
-//        settingsCanvasGroup.interactable = true;
+        if (!settingsCanvasGroup) return;
+        TransitionMenu(settingsCanvasGroup);
     }
 
     public void ShowCredits()
     {
+        if (!creditsCanvasGroup) return;
+        TransitionMenu(creditsCanvasGroup);
+    }
+    
+    #endregion MainMenu
+
+    #region Settings
+
+    //Might not get to these    
+
+    #endregion Settings
+
+    #region EndStates
+
+    public void ShowWinState()
+    {
+        if (!winStateCanvasGroup) return;
+        TransitionMenu(winStateCanvasGroup);
+    }
+
+    public void ShowLoseState()
+    {
+        if (!loseStateCanvasGroup) return;
+        TransitionMenu(loseStateCanvasGroup);
+    }
+    
+    #endregion EndStates
+
+    public void BackToMainMenu()
+    {
         
+    }
+
+    public void RestartGame()
+    {
+        
+    }
+
+    private void TransitionMenu(CanvasGroup nextMenu)
+    {
+        if (!nextMenu)
+        {
+            currentCanvasGroup.alpha = 0;
+            currentCanvasGroup.interactable = false;
+            return;
+        }
+        
+        lastCanvasGroup = currentCanvasGroup;
+        currentCanvasGroup = nextMenu;
+        
+        currentCanvasGroup.alpha = 1;
+        currentCanvasGroup.interactable = true;
+        lastCanvasGroup.alpha = 0;
+        lastCanvasGroup.interactable = false;
     }
 }
