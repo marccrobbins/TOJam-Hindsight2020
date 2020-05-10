@@ -351,7 +351,7 @@
             <e p="GameManagerTest.cs" t="Include" />
             <e p="Item.cs" t="Include" />
             <e p="Manager.cs" t="Include" />
-            <e p="MenuInputController.cs" t="Include" />
+            <e p="MenuController.cs" t="Include" />
             <e p="PickerTool.cs" t="Include" />
             <e p="PieceSpawner.cs" t="Include" />
             <e p="Puzzle.cs" t="Include" />

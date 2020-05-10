@@ -6,16 +6,16 @@ public class DespawnZone : MonoBehaviour
 {
 	private void OnTriggerEnter(Collider other)
 	{
-		PuzzlePiece piece = other.GetComponent<PuzzlePiece>();
-		Puzzle puzz = other.GetComponent<Puzzle>();
-		if(puzz != null)
+		//Destroy puzzle
+		var puzz = other.GetComponent<Puzzle>();
+		if(!puzz)
 		{
-			GameManager.Instance.PuzzleDone(puzz.PuzzleCompleted);
+			GameManager.Instance.TryAgain();
 			Destroy(other.gameObject);
 		}
-		else if (piece != null)
-		{
-			Destroy(other.gameObject);
-		}
+		
+		//Destroy puzzle piece
+		var piece = other.GetComponent<PuzzlePiece>();
+		if (!piece) Destroy(other.gameObject);
 	}
 }

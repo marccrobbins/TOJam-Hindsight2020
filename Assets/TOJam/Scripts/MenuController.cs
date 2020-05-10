@@ -1,7 +1,7 @@
 ﻿using Rewired;
 using UnityEngine;
 
-public class MenuInputController : MonoBehaviour
+public class MenuController : MonoBehaviour
 {
     private const InputActionEventType BUTTON_TYPE = InputActionEventType.ButtonJustReleased;
     private const InputActionEventType AXIS_TYPE = InputActionEventType.AxisActive;
@@ -18,13 +18,11 @@ public class MenuInputController : MonoBehaviour
 
     private void Start()
     {
-        player = ReInput.players.GetPlayer(0);
-
-        if (player == null) return;
+        currentCanvasGroup = startingCanvasGroup;
         
-        player.AddInputEventDelegate(OnCloseMenu, UpdateLoopType.Update, BUTTON_TYPE, "Exit");
-        player.AddInputEventDelegate(OnOpenMenu, UpdateLoopType.Update, BUTTON_TYPE, "Menu");
-        player.AddInputEventDelegate(OnBack, UpdateLoopType.Update, BUTTON_TYPE, "Back");
+        player = ReInput.players.GetPlayer(0);
+        player?.AddInputEventDelegate(OnCloseMenu, UpdateLoopType.Update, BUTTON_TYPE, "Exit");
+        player?.AddInputEventDelegate(OnBack, UpdateLoopType.Update, BUTTON_TYPE, "Back");
     }
     
     private void OnCloseMenu(InputActionEventData data)
@@ -38,17 +36,6 @@ public class MenuInputController : MonoBehaviour
         TransitionMenu(null);
     }
     
-    private void OnOpenMenu(InputActionEventData data)
-    {
-        if (player == null ||
-            !GameManager.Instance.HasStarted) return;
-        
-        player.controllers.maps.SetMapsEnabled(true, "Menu");
-        player.controllers.maps.SetMapsEnabled(false, "InGame");
-
-        TransitionMenu(settingsCanvasGroup);
-    }
-    
     private void OnBack(InputActionEventData data)
     {
         if (GameManager.Instance.HasStarted)
@@ -56,7 +43,7 @@ public class MenuInputController : MonoBehaviour
             TransitionMenu(null);
         }
 
-        if (lastCanvasGroup == startingCanvasGroup) return;
+        if (currentCanvasGroup == startingCanvasGroup) return;
         TransitionMenu(lastCanvasGroup);
     }
 
@@ -113,12 +100,7 @@ public class MenuInputController : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        
-    }
-
-    public void RestartGame()
-    {
-        
+        TransitionMenu(startingCanvasGroup);
     }
 
     private void TransitionMenu(CanvasGroup nextMenu)
