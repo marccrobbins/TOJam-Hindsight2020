@@ -5,54 +5,38 @@ using UnityEngine;
 
 public class PuzzlePiece : MonoBehaviour
 {
-	public string pieceName;
-	[Range(1,100)] public float pieceCollisionSize;
-
+	public event Action OnSnapToSlot;
+	
+	public string identifier;
 	public VelocityEstimator velocityEstimator;
 	public Rigidbody rigidbody;
+	public Collider collision;
 	
 	public bool isBeingHovered;
 
 	private float snapInPlaceThreshold = 0.05f;
-	private bool isMagnetizing = false;
-	private PuzzleSlot magnetizingTarget = null;
+	private bool isMagnetizing;
+	private PuzzleSlot magnetizingTarget;
 	private float rotationSpeed = 0.00001f;
 	private float magSpeed = 0.8f;
 
 	[SerializeField] private MeshFilter meshFilter;
 	[SerializeField] private MeshCollider meshCollider;
 
-	private void Start()
-	{
-		
-	}
-
-	public void MatchPiece(PuzzleAssemblyPiece matchMe)
-	{
-		pieceName = matchMe.pieceName;
-		transform.localScale = matchMe.transform.lossyScale;
-		meshFilter.mesh = matchMe.GetComponent<MeshFilter>()?.sharedMesh;
-		meshCollider.sharedMesh = meshFilter.sharedMesh;
-		transform.rotation = UnityEngine.Random.rotation;
-	}
-
 	public void SetHoverState(bool isActive)
 	{
 		//Add some sort of visible cue that this piece is being hovered over by a picker
-		
 		isBeingHovered = isActive;
 	}
 
 	public void GotPickedUp(Transform parent)
 	{
-		if (rigidbody)
-		{
-			rigidbody.useGravity = false;
-			rigidbody.velocity = Vector3.zero;
-			rigidbody.angularVelocity = Vector3.zero;
-		}
-		
 		transform.SetParent(parent);
+
+		if (!rigidbody) return;
+		rigidbody.useGravity = false;
+		rigidbody.velocity = Vector3.zero;
+		rigidbody.angularVelocity = Vector3.zero;
 	}
 
 	public void GotDropped()
@@ -66,49 +50,54 @@ public class PuzzlePiece : MonoBehaviour
 		rigidbody.angularVelocity = velocityEstimator ? velocityEstimator.AngularVelocity : Vector3.zero;
 	}
 
-	public void StartMagnetizing(PuzzleSlot goToMe)
+	public void GotYanked()
+	{
+		transform.SetParent(null);
+		if (collision) collision.enabled = true;
+		rigidbody.useGravity = true;
+		rigidbody.velocity = Vector3.zero;
+		rigidbody.angularVelocity = Vector3.zero;
+	}
+
+	public void StartMagnetizing(PuzzleSlot target)
 	{
 		isMagnetizing = true;
-		magnetizingTarget = goToMe;
-		GetComponent<Collider>().enabled = false;
+		magnetizingTarget = target;
+		if (collision) collision.enabled = false;
 		rigidbody.useGravity = false;
 		rigidbody.velocity = Vector3.zero;
 		rigidbody.angularVelocity = Vector3.zero;
 
-		magSpeed = Vector3.Distance(transform.position, goToMe.transform.position) / 0.5f;
-		rotationSpeed = Quaternion.Angle(transform.rotation, goToMe.transform.rotation) / 0.5f;
+		magSpeed = Vector3.Distance(transform.position, target.transform.position) / 0.5f;
+		rotationSpeed = Quaternion.Angle(transform.rotation, target.transform.rotation) / 0.5f;
 	}
 
 	public void Update()
 	{
-		if (isMagnetizing)
+		if (!isMagnetizing) return;
+		if (Vector3.Distance(transform.position, magnetizingTarget.transform.position) < snapInPlaceThreshold)
 		{
-			if (Vector3.Distance(transform.position, magnetizingTarget.transform.position) < snapInPlaceThreshold)
+			isMagnetizing = false;
+			OnSnapToSlot?.Invoke();
+			transform.SetParent(magnetizingTarget.transform);
+		}
+		else
+		{
+			var newPos = Vector3.MoveTowards(transform.position, magnetizingTarget.transform.position,
+				magSpeed * Time.deltaTime);
+
+			Quaternion newRot;
+			if (Quaternion.Angle(transform.rotation, magnetizingTarget.transform.rotation) > 5)
 			{
-				magnetizingTarget.SnapInPlaceDone();
-				gameObject.SetActive(false);
+				newRot = Quaternion.RotateTowards(
+					transform.rotation, magnetizingTarget.transform.rotation, rotationSpeed * Time.deltaTime);
 			}
 			else
 			{
-				Vector3 newPos = Vector3.MoveTowards(transform.position, magnetizingTarget.transform.position, magSpeed * Time.deltaTime);
-
-				Quaternion newRot;
-				if ( Quaternion.Angle(transform.rotation, magnetizingTarget.transform.rotation) > 5)
-				{
-					newRot = Quaternion.RotateTowards(
-					   transform.rotation, magnetizingTarget.transform.rotation, rotationSpeed * Time.deltaTime);
-				}
-				else
-				{
-					newRot = magnetizingTarget.transform.rotation;
-				}
-				transform.SetPositionAndRotation(newPos, newRot);
+				newRot = magnetizingTarget.transform.rotation;
 			}
-		}
-	}
 
-	private void OnDestroy()
-	{
-		
+			transform.SetPositionAndRotation(newPos, newRot);
+		}
 	}
 }

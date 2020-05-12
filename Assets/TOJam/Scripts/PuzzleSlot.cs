@@ -1,52 +1,72 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PuzzleSlot : MonoBehaviour
 {
-	public PuzzleAssemblyPiece matchingPiece;
-	public SphereCollider sphere;
+	public SpawnSide spawnSide;
+	public PuzzlePiece matchingPiece;
+	public SphereCollider collision;
 	public MeshRenderer hologramRenderer;
-
-	public void PrepareSlot()
-	{
-		//Send piece to spawnmanager
-	}
 	
-	public void StartTrackingPiece(PuzzleAssemblyPiece pieceToEnable)
+	public bool isFilled { get; private set; }
+	public PuzzlePiece slottedPiece { get; private set; }
+
+	private Puzzle puzzle;
+	
+	public void PrepareSlot(Puzzle puzzle)
 	{
-		matchingPiece = pieceToEnable;
-		sphere.radius = matchingPiece.pieceCollisionSize / 200f;
-		matchingPiece.gameObject.SetActive(false);
+		if (!matchingPiece) return;
+		
+		this.puzzle = puzzle;
+		matchingPiece.OnSnapToSlot += PieceSnappedInPlace;
+		SpawnManager.Instance.RegisterPuzzlePiece(matchingPiece, spawnSide);
 	}
 
 	public void OnTriggerEnter(Collider other)
 	{
-		PuzzlePiece piece = other.GetComponent<PuzzlePiece>();
-		if (piece == null) return;
+		var piece = other.GetComponent<PuzzlePiece>();
+		if (!piece) return;
 
-		if(matchingPiece.pieceName == piece.pieceName)
+		//Compare piece
+		if (IsCorrectPiece(piece))
 		{
-			piece.StartMagnetizing(this);
-
+			slottedPiece = piece;
+			slottedPiece.StartMagnetizing(this);
+		}
+		else
+		{
+			//Blow it away with physics then destroy it
+			piece.rigidbody.AddForce(Vector3.up * 100);
+			SpawnManager.Instance.DespawnPiece(piece, 5);
 		}
 	}
 
-	public void SnapInPlaceDone()
+	//Called when piece is pulled from the puzzle
+	private void OnTriggerExit(Collider other)
 	{
-		sphere.enabled = false;
-		matchingPiece.gameObject.SetActive(true);
-		gameObject.SetActive(false);
+		var piece = other.GetComponent<PuzzlePiece>();
+		if (!piece) return;
+		
+		//Tell the puzzle this slot has been emptied
+		if (collision) collision.enabled = true;
+		if (hologramRenderer) hologramRenderer.enabled = true;
+		puzzle.UpdatePuzzleProgress();
 	}
 
-	public bool AmIThisPiece(string name)
+	private bool IsCorrectPiece(PuzzlePiece piece)
 	{
-		return matchingPiece.pieceName == name;
+		return string.Equals(piece.identifier, matchingPiece.identifier);
 	}
 
-	public void IveBeenYanked()
+	private void PieceSnappedInPlace()
 	{
-		matchingPiece.gameObject.SetActive(false);
-		gameObject.SetActive(true);
+		if (collision) collision.enabled = false;
+		if (hologramRenderer) hologramRenderer.enabled = false;
+		isFilled = true;
+		puzzle.UpdatePuzzleProgress();
+	}
+	
+	public void ResetSlot()
+	{
+		SpawnManager.Instance.UnregisterPuzzlePiece(matchingPiece);
 	}
 }

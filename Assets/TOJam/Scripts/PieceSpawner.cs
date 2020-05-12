@@ -58,10 +58,10 @@ public class PieceSpawner : MonoBehaviour
 		var newPiece = Instantiate(PiecePrefab, transform.position, transform.rotation);
 		spawnedPieces.Add(newPiece.gameObject);
 		
-		var matchMe = ReferencePieces[0];
-		ReferencePieces.RemoveAt(0);
-
-		newPiece.MatchPiece(matchMe);
-		ReferencePieces.Add(matchMe);
+//		var matchMe = ReferencePieces[0];
+//		ReferencePieces.RemoveAt(0);
+//
+//		newPiece.MatchPiece(matchMe);
+//		ReferencePieces.Add(matchMe);
 	}
 }

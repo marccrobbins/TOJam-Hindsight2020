@@ -16,7 +16,6 @@ public class GameManager : Manager
 	[SerializeField] private Transform PuzzleSpawnLocation;
 	[SerializeField] private Puzzle[] PuzzlePrefabLevels;
 	[SerializeField] private Conveyer[] ConveyersInLevel;
-	[SerializeField] private PieceSpawner[] SpawnersInLevel;
 
 	private Puzzle activePuzzle;
 	private int currentLevel = 0;
@@ -33,7 +32,8 @@ public class GameManager : Manager
 
     protected override IEnumerator InitializingRoutine()
     {
-	    yield return new WaitUntil(() => AudioManager.Instance != null && AudioManager.Instance.IsInitialized);
+	    yield return new WaitUntil(() => AudioManager.Instance != null && 
+	                                     AudioManager.Instance.IsInitialized);
 	    
 	    if (musicController) musicController.StartMusic();
 	    
@@ -43,25 +43,23 @@ public class GameManager : Manager
     public void StartGame()
     {
 	    ResetGame();
-	    
-        HasStarted = true;
-        
-        if (musicController) musicController.SetMuffle(false);
 
-        if (PuzzlePrefabLevels.Length > 0)
-        {
-	        activePuzzle = Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position,
-		        PuzzleSpawnLocation.rotation);
-	        activePuzzle.PreparePuzzle();
-	        
-	        foreach (var spawner in SpawnersInLevel)
-	        {
-		        spawner.StartSpawning(PuzzlePrefabLevels[currentLevel].Pieces);
-	        }
-        }
+	    HasStarted = true;
+
+	    if (musicController) musicController.SetMuffle(false);
+	   
+	    if (PuzzlePrefabLevels.Length == 0) return;
+	    
+	    //Prepare puzzle
+	    activePuzzle = Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position,
+		    PuzzleSpawnLocation.rotation);
+	    activePuzzle.PreparePuzzle();
+
+	    //Start spawning
+	    SpawnManager.Instance.StartSpawning();
     }
 
-	public void SpeedToEnd()
+    public void SpeedToEnd()
 	{
 		foreach (var conv in ConveyersInLevel)
 		{
@@ -79,12 +77,6 @@ public class GameManager : Manager
 			return;
 		}
 		
-		//Speed up conveyor belts
-//		foreach (var conv in ConveyersInLevel)
-//		{
-//			conv.SpeedUp();
-//		}
-		
 		//Create a new puzzle
 		activePuzzle = Instantiate(PuzzlePrefabLevels[currentLevel], PuzzleSpawnLocation.position, PuzzleSpawnLocation.rotation);
 		activePuzzle.PreparePuzzle();
@@ -97,14 +89,12 @@ public class GameManager : Manager
 		
 		HasStarted = false;
 		tries = 3;
-		foreach(var spawner in SpawnersInLevel)
-		{
-			spawner.StopSpawning();
-		}
+		SpawnManager.Instance.StopSpawning();
 			
 		if (musicController) musicController.EndMusic();
-
+		
 		if (!menuController) return;
+		
 		if (hasWon) menuController.ShowWinState();
 		else menuController.ShowLoseState();
 	}
@@ -126,10 +116,6 @@ public class GameManager : Manager
 			conveyor.SlowDown();
 		}
 
-		foreach (var spawner in SpawnersInLevel)
-		{
-			if (!spawner) continue;
-			spawner.ResetSpawner();
-		}
+		SpawnManager.Instance.ResetSpawner();
 	}
 }

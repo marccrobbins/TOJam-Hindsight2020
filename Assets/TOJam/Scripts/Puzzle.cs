@@ -1,63 +1,53 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Puzzle : MonoBehaviour
 {
-	[SerializeField] private PuzzleSlot SlotPrefab;
-	public PuzzleAssemblyPiece[] Pieces;
-	[SerializeField] private List<PuzzleSlot> Slots;
-	private bool pleaseStopLogging = false;
-	public bool PuzzleCompleted = false;
+	public List<PuzzleSlot> slots;
+	public bool puzzleCompleted = false;
 	
     public void PreparePuzzle()
     {
+	    if (slots == null ||
+	        slots.Count == 0) return;
+	    
 		//prepare the slots
-    
-        foreach(PuzzleAssemblyPiece piece in Pieces)
+		foreach (var slot in slots)
 		{
-			piece.GrabMesh();
-			PuzzleSlot newSlot = Instantiate(SlotPrefab, piece.transform.position, piece.transform.rotation, transform);
-			piece.matchingSlot = newSlot;
-			Slots.Add(newSlot);
-			newSlot.StartTrackingPiece(piece);
+			slot.PrepareSlot(this);
 		}
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdatePuzzleProgress()
     {
-		var isDone = true;
-        foreach(var slot in Slots)
-		{
-			if(slot.gameObject.activeSelf)
-			{
-				isDone = false;
-			}
-		}
-		if(isDone) Debug.Log("DONE? " + isDone);
-
-		if(isDone && !pleaseStopLogging)
-		{
-			PuzzleDone();
-		}
+	    if (slots == null ||
+	        slots.Count == 0) return;	
+	    
+	    //Check puzzle progress here
+	    foreach (var slot in slots)
+	    {
+		    var isSlotEmpty = !slot.isFilled;
+		    if (isSlotEmpty) return;
+	    }
+	    
+	    PuzzleDone();
     }
 
 	private void PuzzleDone()
 	{
-		pleaseStopLogging = true;
-		PuzzleCompleted = true;
-		GameManager.Instance.EndGame(PuzzleCompleted);
+		puzzleCompleted = true;
+		GameManager.Instance.EndGame(puzzleCompleted);
 	}
 
 	public void ResetPuzzle()
 	{
-		foreach (var slot in new List<PuzzleSlot>(Slots))
+		if (slots == null ||
+		    slots.Count == 0) return;
+
+		foreach (var slot in slots)
 		{
 			if (!slot) continue;
-			Destroy(slot.gameObject);
+			slot.ResetSlot();
 		}
-		
-		Slots.Clear();
 	}
 }

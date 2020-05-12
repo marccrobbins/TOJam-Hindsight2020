@@ -12,34 +12,27 @@ public class ZippyBot : MonoBehaviour
 	private float waitTimeMin = 5f;
 	private float waitTimeMax = 20f;
 
-	[SerializeField] private float waitTimer = 0f;
+	[SerializeField] private float waitTimer;
 
-	private bool isOnPosSide = false;
-
+	private bool isOnPosSide;
 	private Vector3 originalPosition;
-
 	private float reachedWaypointThreshold = 0.4f;
 	private float reachedPieceThreshold = 1.0f;
-
 	private bool isGoingOutToPlay = false;
-
 	private State currentState = State.Waiting;
-
-	private PuzzleAssemblyPiece targetPiece;
-
+	private PuzzlePiece targetPiece;
 	private float yankForce = 100f;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
 		isOnPosSide = transform.position.x > 0;
 		waitTimer = Random.Range(waitTimeMin, waitTimeMax);
 		originalPosition = transform.position;
 	}
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+	    //Dear god dude, use a state machine they take like 5 minutes to build! lmao
 		switch(currentState)
 		{
 			case State.Waiting:
@@ -71,44 +64,38 @@ public class ZippyBot : MonoBehaviour
 				}
 				break;
 		}
-
-
-
-		
     }
 
-	private void OnTriggerEnter(Collider other)
-	{
-		Puzzle puzz = other.GetComponent<Puzzle>();
-		if (puzz != null)
-		{
-			foreach (PuzzleAssemblyPiece piece in puzz.Pieces)
-			{
-				if (!piece.gameObject.activeSelf) { 
-					if ((isOnPosSide && piece.transform.position.x > 0)
-					|| (!isOnPosSide && piece.transform.position.x < 0))
-					{
-						targetPiece = piece;
-						agent.SetDestination(piece.transform.position);
-						currentState = State.Chasing;
-					}
-				}
-			}
-		}
-	}
+    private void OnTriggerEnter(Collider other)
+    {
+	    var puzzle = other.GetComponent<Puzzle>();
+	    if (!puzzle) return;
 
-	private void PullOutPiece()
+	    foreach (var slot in puzzle.slots)
+	    {
+		    if (!slot.isFilled) continue;
+		    if (isOnPosSide && slot.transform.position.x > 0
+		        || !isOnPosSide && slot.transform.position.x < 0)
+		    {
+			    targetPiece = slot.slottedPiece;
+			    agent.SetDestination(slot.transform.position);
+			    currentState = State.Chasing;
+		    }
+	    }
+    }
+
+    private void PullOutPiece()
 	{
 		agent.SetDestination(originalPosition);
 		currentState = State.Returning;
 
-		Vector3 yank = targetPiece.transform.position - transform.position;
+		var yank = targetPiece.transform.position - transform.position;
 		yank = yank.normalized * yankForce;
-		yank += Vector3.up * yankForce / 4f;
+		yank += yankForce / 4f * Vector3.up;
 
-		targetPiece.matchingSlot.IveBeenYanked();
+		targetPiece.GotYanked();
 
-		PuzzlePiece throwMe = Instantiate(piecePrefab, targetPiece.transform.position + yank.normalized, Random.rotation);
+		var throwMe = Instantiate(piecePrefab, targetPiece.transform.position + yank.normalized, Random.rotation);
 		throwMe.rigidbody.AddForce(yank);
 	}
 

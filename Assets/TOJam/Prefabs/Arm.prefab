@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickerTool: {fileID: 954777202149564493}
   moveSpeed: 15
-  bounds: {x: 11.5, y: 12.5}
+  bounds: {x: 14, y: 12.5}
   horizontalAxisName: 
   verticalAxisName: 
   actionAxisName: 

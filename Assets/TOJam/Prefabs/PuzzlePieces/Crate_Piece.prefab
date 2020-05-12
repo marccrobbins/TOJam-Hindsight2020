@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d775e0392174640b8a12d8bfb297c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  matchingPiece: {fileID: 0}
   sphere: {fileID: 5453085167177458695}
   hologramRenderer: {fileID: 8468845405494769657}
 --- !u!135 &5453085167177458695
