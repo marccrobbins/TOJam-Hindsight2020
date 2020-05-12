@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PuzzlePiece : MonoBehaviour
@@ -11,6 +9,7 @@ public class PuzzlePiece : MonoBehaviour
 	public VelocityEstimator velocityEstimator;
 	public Rigidbody rigidbody;
 	public Collider collision;
+	public Color colorAdjustment;
 	
 	public bool isBeingHovered;
 
@@ -20,8 +19,15 @@ public class PuzzlePiece : MonoBehaviour
 	private float rotationSpeed = 0.00001f;
 	private float magSpeed = 0.8f;
 
-	[SerializeField] private MeshFilter meshFilter;
-	[SerializeField] private MeshCollider meshCollider;
+	private void Start()
+	{
+		var renderer = GetComponent<Renderer>();
+		if (renderer || !renderer.material) return;
+		
+		var instancedMat = Instantiate(renderer.material);
+		instancedMat.color = colorAdjustment;
+		renderer.material = instancedMat;
+	}
 
 	public void SetHoverState(bool isActive)
 	{

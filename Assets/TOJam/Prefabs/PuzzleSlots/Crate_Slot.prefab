@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2706523220289432718}
   - component: {fileID: 5453085167177458695}
   m_Layer: 0
-  m_Name: SM_Prop_Crate_03
+  m_Name: Crate_Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,8 +93,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d775e0392174640b8a12d8bfb297c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnSide: 0
   matchingPiece: {fileID: 0}
-  sphere: {fileID: 5453085167177458695}
+  collision: {fileID: 5453085167177458695}
   hologramRenderer: {fileID: 8468845405494769657}
 --- !u!135 &5453085167177458695
 SphereCollider:

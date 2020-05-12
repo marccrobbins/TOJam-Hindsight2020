@@ -89,19 +89,15 @@ public class SpawnManager : Manager
 
     public void DespawnPiece(PuzzlePiece piece, float despawnDelay = 0)
     {
-        Dictionary<string, PuzzlePiece> activeRegistry = null;
-        var identifierToRemove = string.Empty;
-        foreach (var side in registeredPiecesLookup)
+        GameObject pieceToDespawn = null;
+        foreach (var spawnedPiece in spawnedPieces)
         {
-            activeRegistry = side.Value;
-            if (!activeRegistry.ContainsKey(piece.identifier)) continue;
-               
-            identifierToRemove = piece.identifier;
-            Destroy(piece.gameObject, despawnDelay);
+            if (spawnedPiece != piece.gameObject) continue;
+            pieceToDespawn = spawnedPiece;
         }
 
-        if (string.IsNullOrEmpty(identifierToRemove)) return;
-        activeRegistry?.Remove(identifierToRemove);
+        if (!pieceToDespawn) return;
+        Destroy(pieceToDespawn, despawnDelay);
     }
 
     public void ResetSpawner()

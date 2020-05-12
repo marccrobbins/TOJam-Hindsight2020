@@ -13,7 +13,7 @@ public class Conveyer : MonoBehaviour
 
 	private void OnTriggerStay(Collider other)
 	{
-		if (other.gameObject.CompareTag("Conveyer"))
+		if (other.transform.root.gameObject.CompareTag("Conveyer"))
 		{
 			other.transform.position = Vector3.MoveTowards(other.transform.position, transform.position + (transform.forward * 1000), Speed * speedMod * Time.deltaTime);
 		}
