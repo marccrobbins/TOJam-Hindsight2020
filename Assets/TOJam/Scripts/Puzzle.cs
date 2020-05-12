@@ -12,10 +12,12 @@ public class Puzzle : MonoBehaviour
 	
     public void PreparePuzzle()
     {
+		//prepare the slots
+    
         foreach(PuzzleAssemblyPiece piece in Pieces)
 		{
 			piece.GrabMesh();
-			PuzzleSlot newSlot = Instantiate(SlotPrefab, piece.transform.position, piece.transform.rotation, this.transform);
+			PuzzleSlot newSlot = Instantiate(SlotPrefab, piece.transform.position, piece.transform.rotation, transform);
 			piece.matchingSlot = newSlot;
 			Slots.Add(newSlot);
 			newSlot.StartTrackingPiece(piece);

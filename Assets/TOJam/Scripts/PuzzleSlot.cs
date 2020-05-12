@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class PuzzleSlot : MonoBehaviour
 {
-	private PuzzleAssemblyPiece matchingPiece;
-	[SerializeField] private SphereCollider sphere;
+	public PuzzleAssemblyPiece matchingPiece;
+	public SphereCollider sphere;
+	public MeshRenderer hologramRenderer;
 
+	public void PrepareSlot()
+	{
+		//Send piece to spawnmanager
+	}
+	
 	public void StartTrackingPiece(PuzzleAssemblyPiece pieceToEnable)
 	{
 		matchingPiece = pieceToEnable;
