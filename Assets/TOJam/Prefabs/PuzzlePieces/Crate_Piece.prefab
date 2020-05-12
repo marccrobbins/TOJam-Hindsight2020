@@ -160,6 +160,8 @@ MonoBehaviour:
   velocityEstimator: {fileID: 4918853757230733727}
   rigidbody: {fileID: 5982876482576896488}
   collision: {fileID: 3627252189959416120}
+  material: {fileID: 2100000, guid: 7ef22d386e28a8c4ea1c4df76d313dd3, type: 2}
+  renderer: {fileID: 8468845405494769657}
   colorAdjustment: {r: 1, g: 1, b: 1, a: 1}
   isBeingHovered: 0
 --- !u!114 &4918853757230733727

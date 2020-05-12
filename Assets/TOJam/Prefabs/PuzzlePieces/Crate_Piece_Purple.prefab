@@ -24,24 +24,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5947300159653090381, guid: 15dfd668919a2e6428a081998e667529,
         type: 3}
-      propertyPath: velocityEstimator
-      value: 
-      objectReference: {fileID: 4918853757230733727, guid: 09155795b2c5e42489400d5d10341dd0,
-        type: 3}
-    - target: {fileID: 5947300159653090381, guid: 15dfd668919a2e6428a081998e667529,
-        type: 3}
-      propertyPath: rigidbody
-      value: 
-      objectReference: {fileID: 5982876482576896488, guid: 09155795b2c5e42489400d5d10341dd0,
-        type: 3}
-    - target: {fileID: 5947300159653090381, guid: 15dfd668919a2e6428a081998e667529,
-        type: 3}
-      propertyPath: collision
-      value: 
-      objectReference: {fileID: 1067751855684420539, guid: 09155795b2c5e42489400d5d10341dd0,
-        type: 3}
-    - target: {fileID: 5947300159653090381, guid: 15dfd668919a2e6428a081998e667529,
-        type: 3}
       propertyPath: colorAdjustment.b
       value: 0.96763754
       objectReference: {fileID: 0}

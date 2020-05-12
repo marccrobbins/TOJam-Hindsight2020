@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 
-public class PuzzleSlot : MonoBehaviour
+public class PuzzleSlot : MonoBehaviour, IHoverable
 {
 	public SpawnSide spawnSide;
 	public PuzzlePiece matchingPiece;
 	public SphereCollider collision;
+	public Material hologramMaterial;
 	public MeshRenderer hologramRenderer;
-	
+
 	public bool isFilled { get; private set; }
 	public PuzzlePiece slottedPiece { get; private set; }
 
 	private Puzzle puzzle;
+	private Material instancedMaterial;
+	private int highlightPropertyId;
 	
 	public void PrepareSlot(Puzzle puzzle)
 	{
@@ -19,6 +22,21 @@ public class PuzzleSlot : MonoBehaviour
 		this.puzzle = puzzle;
 		matchingPiece.OnSnapToSlot += PieceSnappedInPlace;
 		SpawnManager.Instance.RegisterPuzzlePiece(matchingPiece, spawnSide);
+
+		if (!hologramMaterial) return;
+		instancedMaterial = Instantiate(hologramMaterial);
+		highlightPropertyId = Shader.PropertyToID("_isHighlighted");
+		if (hologramRenderer) hologramRenderer.material = instancedMaterial;
+	}
+	
+	public void HoverEnter()
+	{
+		if (instancedMaterial) instancedMaterial.SetInt(highlightPropertyId, 1);
+	}
+
+	public void HoverExit()
+	{
+		if (instancedMaterial) instancedMaterial.SetInt(highlightPropertyId, 0);
 	}
 
 	public void OnTriggerEnter(Collider other)

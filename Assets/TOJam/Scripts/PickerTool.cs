@@ -10,6 +10,8 @@ public class PickerTool : MonoBehaviour
     public PuzzlePiece currentPuzzlePiece;
     public PuzzlePiece hoveringPuzzlePiece;
 
+    private IHoverable hoverable;
+    
     private void Update()
     {
         CheckHoveringOverPiece();
@@ -30,20 +32,23 @@ public class PickerTool : MonoBehaviour
 
         if (Physics.Raycast(ray, out var hit, Mathf.Infinity, validHitMask))
         {
-            var hitObject = hit.collider.GetComponentInParent<PuzzlePiece>();
-            if (hitObject)
+            hoverable = hit.collider.GetComponentInParent<IHoverable>();
+            hoverable?.HoverEnter();
+
+            if (currentPuzzlePiece)
             {
-                //Assign hovering piece
-                hoveringPuzzlePiece = hitObject;
-                hoveringPuzzlePiece.SetHoverState(true);
+                hoveringPuzzlePiece = null;
                 return;
             }
+            
+            var puzzlePiece = hit.collider.GetComponentInParent<PuzzlePiece>();
+            if (puzzlePiece) hoveringPuzzlePiece = puzzlePiece;
+
+            return;
         }
 
-        if (!hoveringPuzzlePiece) return;
-       
-        hoveringPuzzlePiece.SetHoverState(false);
-        hoveringPuzzlePiece = null;
+        hoverable?.HoverExit();
+        hoverable = null;
     }
 
     public void PickUp()

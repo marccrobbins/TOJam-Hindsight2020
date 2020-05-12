@@ -74,7 +74,7 @@ public class ArmController : MonoBehaviour
             {
                 Debug.Log(name + " trigger up");
                 
-                if(pickerTool) pickerTool.PickUp();
+                if (pickerTool) pickerTool.PickUp();
                 hasActionTriggered = true;
             }
         }

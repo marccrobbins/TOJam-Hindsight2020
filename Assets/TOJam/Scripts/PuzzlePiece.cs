@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class PuzzlePiece : MonoBehaviour
+public class PuzzlePiece : MonoBehaviour, IHoverable
 {
 	public event Action OnSnapToSlot;
 	
@@ -9,10 +9,13 @@ public class PuzzlePiece : MonoBehaviour
 	public VelocityEstimator velocityEstimator;
 	public Rigidbody rigidbody;
 	public Collider collision;
+	public Material material;
+	public Renderer renderer;
 	public Color colorAdjustment;
 	
 	public bool isBeingHovered;
 
+	private Material instancedMaterial;
 	private float snapInPlaceThreshold = 0.05f;
 	private bool isMagnetizing;
 	private PuzzleSlot magnetizingTarget;
@@ -21,12 +24,19 @@ public class PuzzlePiece : MonoBehaviour
 
 	private void Start()
 	{
-		var renderer = GetComponent<Renderer>();
-		if (renderer || !renderer.material) return;
+		if (!material) return;
 		
-		var instancedMat = Instantiate(renderer.material);
-		instancedMat.color = colorAdjustment;
-		renderer.material = instancedMat;
+		instancedMaterial = Instantiate(material);
+		instancedMaterial.color = colorAdjustment;
+		if (renderer) renderer.material = instancedMaterial; 
+	}
+	
+	public void HoverEnter()
+	{
+	}
+
+	public void HoverExit()
+	{
 	}
 
 	public void SetHoverState(bool isActive)

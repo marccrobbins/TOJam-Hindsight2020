@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8468845405494769657}
   - component: {fileID: 2706523220289432718}
   - component: {fileID: 5453085167177458695}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Crate_Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,6 +96,7 @@ MonoBehaviour:
   spawnSide: 0
   matchingPiece: {fileID: 0}
   collision: {fileID: 5453085167177458695}
+  hologramMaterial: {fileID: 2100000, guid: 9e3a5e366c2256b47a6a1aef315db283, type: 2}
   hologramRenderer: {fileID: 8468845405494769657}
 --- !u!135 &5453085167177458695
 SphereCollider:

@@ -12,7 +12,7 @@ public class SpawnManager : Manager
     private bool canSpawn;
     private float timePassed;
     private Dictionary<SpawnSide, Dictionary<string, PuzzlePiece>> registeredPiecesLookup;
-    private List<GameObject> spawnedPieces;
+    private List<GameObject> spawnedPieces = new List<GameObject>();
     
     protected override void Initialize()
     {
@@ -84,11 +84,15 @@ public class SpawnManager : Manager
         var pieceToSpawn = registry[registryKeys[index]];
         
         //Spawn piece
-        Instantiate(pieceToSpawn, spawnPoint.position, Random.rotation);
+        var spawnedPiece = Instantiate(pieceToSpawn, spawnPoint.position, Random.rotation);
+        spawnedPieces.Add(spawnedPiece.gameObject);
     }
 
     public void DespawnPiece(PuzzlePiece piece, float despawnDelay = 0)
     {
+        if (spawnedPieces == null || 
+            spawnedPieces.Count == 0) return;
+        
         GameObject pieceToDespawn = null;
         foreach (var spawnedPiece in spawnedPieces)
         {

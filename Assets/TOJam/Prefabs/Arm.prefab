@@ -711,7 +711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   validHitMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   holder: {fileID: 7712564580650209796}
   minimumDistance: 0.1
   attractionPower: 50
